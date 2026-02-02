@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future-Focused Leaders Brand Ecosystem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #E8A54B;
+            --primary-coral: #E85A5A;
+            --primary-magenta: #C73E6D;
+            --text-mauve: #8B6B7B;
+            --gradient-primary: linear-gradient(135deg, #E8A54B 0%, #E85A5A 50%, #C73E6D 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --bg-light: #FAFAFA;
+            --bg-white: #FFFFFF;
+            --text-dark: #1a1a2e;
+            --text-gray: #6B7280;
+            --text-light: #9CA3AF;
+            --border-light: #E5E7EB;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-white);
+            border-right: 1px solid var(--border-light);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem 3rem;
+            max-width: 1200px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-dark);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: var(--gradient-primary);
+            opacity: 0.15;
+            border-radius: 50%;
+            transform: rotate(-15deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(232,165,75,0.2);
+            color: var(--primary-orange);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .hero-meta strong {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Funnel Visualization */
+        .funnel-container {
+            padding: 2rem 0;
+        }
+
+        .funnel-level {
+            margin-bottom: 2rem;
+        }
+
+        .funnel-level-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .funnel-badge {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .funnel-badge.top {
+            background: var(--gradient-primary);
+        }
+
+        .funnel-badge.middle {
+            background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+        }
+
+        .funnel-badge.bottom {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+
+        .umbrella-brand {
+            background: var(--gradient-dark);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            color: white;
+        }
+
+        .umbrella-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .umbrella-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .umbrella-url {
+            background: rgba(255,255,255,0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .planned-badge {
+            display: inline-block;
+            background: rgba(251, 191, 36, 0.2);
+            color: #F59E0B;
+            padding: 0.15rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .face-section {
+            background: rgba(199,62,109,0.1);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-magenta);
+        }
+
+        .face-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .face-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .face-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .face-role {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Collapsible/Accordion Styles */
+        details {
+            margin-bottom: 0.75rem;
+        }
+
+        details summary {
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.2s ease;
+        }
+
+        details summary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        details summary::after {
+            content: '+';
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--primary-magenta);
+        }
+
+        details[open] summary::after {
+            content: '−';
+        }
+
+        details[open] summary {
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            margin-bottom: 0;
+        }
+
+        .details-content {
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+        }
+
+        .channel-list {
+            list-style: none;
+        }
+
+        .channel-list li {
+            padding: 0.5rem 0;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .channel-list li::before {
+            content: '→';
+            color: var(--primary-coral);
+        }
+
+        /* Light details for white backgrounds */
+        .details-light summary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .details-light summary:hover {
+            background: #E5E7EB;
+        }
+
+        .details-light .details-content {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-top: none;
+        }
+
+        .details-light .channel-list li {
+            color: var(--text-gray);
+        }
+
+        /* Tier Cards */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tier-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tier-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .tier-label {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .tier-price {
+            font-size: 0.85rem;
+            color: var(--primary-coral);
+        }
+
+        .tier-features {
+            list-style: none;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .tier-features li {
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tier-features li::before {
+            content: '✓';
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        /* Builders Cards */
+        .builders-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .builder-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+
+        .builder-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .builder-card.business {
+            border-top: 4px solid #3B82F6;
+        }
+
+        .builder-card.ministry {
+            border-top: 4px solid #8B5CF6;
+        }
+
+        .builder-card.agency {
+            border-top: 4px solid #10B981;
+        }
+
+        .builder-card-header {
+            margin-bottom: 1rem;
+        }
+
+        .builder-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .builder-url {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .builder-audience {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .builder-features {
+            list-style: none;
+            font-size: 0.85rem;
+        }
+
+        .builder-features li {
+            padding: 0.35rem 0;
+            color: var(--text-gray);
+        }
+
+        .builder-price {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Voice & Tone Table */
+        .voice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .voice-table th,
+        .voice-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .voice-table th {
+            background: var(--bg-light);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-gray);
+        }
+
+        .voice-table td {
+            font-size: 0.9rem;
+        }
+
+        .voice-table .brand-col {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .voice-table .tone-col {
+            color: var(--text-gray);
+        }
+
+        .voice-table .example-col {
+            font-style: italic;
+            color: var(--text-gray);
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+        }
+
+        /* Cross-Promotion Guidelines */
+        .promo-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .promo-list {
+            list-style: none;
+        }
+
+        .promo-list li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .promo-list .do::before {
+            content: '✓';
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        .promo-list .dont::before {
+            content: '✗';
+            color: #EF4444;
+            font-weight: 600;
+        }
+
+        .promo-note {
+            background: var(--bg-light);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+            border-left: 3px solid var(--primary-magenta);
+        }
+
+        /* Journey Triggers */
+        .trigger-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .trigger-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .trigger-from {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .trigger-arrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+            color: var(--primary-coral);
+        }
+
+        .trigger-signals {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .trigger-signals li {
+            padding: 0.25rem 0;
+        }
+
+        .trigger-signals li::before {
+            content: '• ';
+            color: var(--primary-coral);
+        }
+
+        /* Editable Fields */
+        .editable-section {
+            margin-top: 1rem;
+        }
+
+        .editable-row {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .editable-label {
+            flex: 0 0 200px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .editable-value {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            min-height: 36px;
+        }
+
+        .editable-value.empty {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Action Items / Checklist */
+        .action-list {
+            list-style: none;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.5rem;
+        }
+
+        .action-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-light);
+            border-radius: 4px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .action-checkbox.checked {
+            background: var(--primary-magenta);
+            border-color: var(--primary-magenta);
+        }
+
+        .action-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        .action-content {
+            flex: 1;
+        }
+
+        .action-title {
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-desc {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .action-priority {
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 1rem;
+            font-weight: 600;
+        }
+
+        .action-priority.high {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+
+        .action-priority.medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+        }
+
+        .action-priority.low {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+
+        /* Brand Assets */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .asset-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .asset-card:hover {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .asset-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .asset-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .asset-type {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .tech-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .tech-category {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-tools {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .tech-tools li {
+            padding: 0.35rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-tools .tbd {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* KPIs */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .kpi-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .kpi-brand {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .kpi-metrics {
+            list-style: none;
+        }
+
+        .kpi-metrics li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.35rem 0;
+            font-size: 0.85rem;
+            border-bottom: 1px dashed var(--border-light);
+        }
+
+        .kpi-metrics li:last-child {
+            border-bottom: none;
+        }
+
+        .kpi-value {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Team Ownership */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .team-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .team-area {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .team-roles {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .team-roles li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .team-roles li:last-child {
+            border-bottom: none;
+        }
+
+        .team-owner {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .builders-grid {
+                grid-template-columns: 1fr;
+            }
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+            .assets-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tech-grid,
+            .kpi-grid,
+            .team-grid,
+            .trigger-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            .section {
+                padding: 1.5rem;
+            }
+            .assets-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            details[open] {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-logo">FFL Brand Ecosystem</div>
+            <ul class="sidebar-nav">
+                <li><a href="#funnel" class="active">The Funnel</a></li>
+                <li><a href="#channel-mapping">Channel Mapping</a></li>
+                <li><a href="#voice-tone">Voice & Tone</a></li>
+                <li><a href="#cross-promotion">Cross-Promotion</a></li>
+                <li><a href="#journey-triggers">Journey Triggers</a></li>
+                <li><a href="#team-ownership">Team Ownership</a></li>
+                <li><a href="#kpis">KPIs & Metrics</a></li>
+                <li><a href="#tech-stack">Tech Stack</a></li>
+                <li><a href="#brand-assets">Brand Assets</a></li>
+                <li><a href="#action-items">Action Items</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero -->
+            <header class="hero">
+                <div class="hero-content">
+                    <span class="hero-badge">Brand Ecosystem Documentation</span>
+                    <h1>Future-Focused Leaders</h1>
+                    <p class="hero-tagline">Unified brand architecture with Jay Owen as the face</p>
+                    <div class="hero-meta">
+                        <span><strong>Primary Entry:</strong> Newsletter @ futurefocused.ai</span>
+                        <span><strong>Updated:</strong> Feb 2, 2026</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Section 1: The Funnel -->
+            <section id="funnel" class="section">
+                <div class="section-header">
+                    <div class="section-icon">📊</div>
+                    <div>
+                        <h2 class="section-title">The Funnel Visualization</h2>
+                        <p class="section-subtitle">New hierarchy: Future-Focused Leaders as umbrella brand</p>
+                    </div>
+                </div>
+
+                <div class="funnel-container">
+                    <!-- Top of Funnel: FFL -->
+                    <div class="funnel-level">
+                        <div class="funnel-level-header">
+                            <span class="funnel-badge top">Top of Funnel</span>
+                            <span style="color: var(--text-gray); font-size: 0.9rem;">Audience Building & Lead Generation</span>
+                        </div>
+
+                        <div class="umbrella-brand">
+                            <div class="umbrella-header">
+                                <span class="umbrella-logo">Future-Focused Leaders</span>
+                                <span class="umbrella-url">futurefocused.ai</span>
+                                <span class="planned-badge">Planned</span>
+                            </div>
+
+                            <!-- Jay Owen - The Face -->
+                            <div class="face-section">
+                                <div class="face-header">
+                                    <div class="face-avatar">JO</div>
+                                    <div>
+                                        <div class="face-name">Jay Owen</div>
+                                        <div class="face-role">The Face & Thought Leader</div>
+                                    </div>
+                                </div>
+
+                                <!-- Content Pillars -->
+                                <details>
+                                    <summary>AI with Jay <span style="font-weight: normal; color: rgba(255,255,255,0.6);">(Primary Lead Gen)</span></summary>
+                                    <div class="details-content">
+                                        <ul class="channel-list">
+                                            <li>Newsletter (primary lead generation)</li>
+                                            <li>YouTube Channel</li>
+                                            <li>Facebook Group (free community)</li>
+                                            <li>LinkedIn</li>
+                                            <li>Instagram</li>
+                                            <li>TikTok</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details>
+                                    <summary>FFL Podcast <span class="planned-badge">Planned</span></summary>
+                                    <div class="details-content">
+                                        <ul class="channel-list">
+                                            <li>Rebrand of "Building a Business that Lasts"</li>
+                                            <li>Primary podcast channel for FFL</li>
+                                            <li>Cross-promoted across all platforms</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details>
+                                    <summary>Book: Building a Business that Lasts</summary>
+                                    <div class="details-content">
+                                        <ul class="channel-list">
+                                            <li>Authority building asset</li>
+                                            <li>Lead magnet tie-ins</li>
+                                            <li>Speaking engagement anchor</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details>
+                                    <summary>Book: Future Focused AI <span class="planned-badge">Planned</span></summary>
+                                    <div class="details-content">
+                                        <ul class="channel-list">
+                                            <li>AI-focused thought leadership</li>
+                                            <li>Companion to AI with Jay content</li>
+                                            <li>Lead magnet and list builder</li>
+                                            <li>Speaking engagement topic</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details>
+                                    <summary>Speaking & Appearances</summary>
+                                    <div class="details-content">
+                                        <ul class="channel-list">
+                                            <li>jayowenlive.com → redirects to futurefocused.ai</li>
+                                            <li>Speaking engagements</li>
+                                            <li>Podcast guest appearances</li>
+                                            <li>Industry events</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Tiers -->
+                            <div class="tier-grid">
+                                <div class="tier-card">
+                                    <div class="tier-card-header">
+                                        <span class="tier-label">Free Tier</span>
+                                        <span class="tier-price">$0</span>
+                                    </div>
+                                    <ul class="tier-features">
+                                        <li>Newsletter subscription</li>
+                                        <li>Free resources/downloads</li>
+                                        <li>Facebook Group access</li>
+                                        <li>Public content (YouTube, social, podcast)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tier-card" style="border: 1px solid var(--primary-coral); position: relative;">
+                                    <div style="position: absolute; top: -10px; right: 10px; background: var(--primary-coral); color: white; padding: 0.2rem 0.6rem; border-radius: 1rem; font-size: 0.7rem; font-weight: 600;">FOUNDING MEMBERS</div>
+                                    <div class="tier-card-header">
+                                        <span class="tier-label">Paid Community</span>
+                                        <span class="tier-price" style="display: flex; flex-direction: column; align-items: flex-end;">
+                                            <span style="font-size: 1rem; font-weight: 700;">$67/mo</span>
+                                            <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">or $670/year (save $134)</span>
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(255,255,255,0.2);">
+                                        First 100 members lock in this rate forever<br>
+                                        <span style="color: var(--primary-coral);">Standard price: $97/mo after founding closes</span>
+                                    </div>
+                                    <ul class="tier-features">
+                                        <li>Monthly live training call with Jay</li>
+                                        <li>Monthly Q&A call with Jay</li>
+                                        <li>Full resources/templates library</li>
+                                        <li>Private community platform (Circle)</li>
+                                        <li>Recordings of all past trainings</li>
+                                        <li>FFL Summit 2026 discount ($200-300 off)</li>
+                                    </ul>
+                                    <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.2); font-size: 0.8rem; color: rgba(255,255,255,0.7);">
+                                        <strong style="color: white;">Jay's Commitment:</strong> 2 calls/month (training + Q&A)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom of Funnel: Three Builders -->
+                    <div class="funnel-level">
+                        <div class="funnel-level-header">
+                            <span class="funnel-badge bottom">Bottom of Funnel</span>
+                            <span style="color: var(--text-gray); font-size: 0.9rem;">Service & Community Destinations</span>
+                        </div>
+
+                        <div class="builders-grid">
+                            <div class="builder-card business">
+                                <div class="builder-card-header">
+                                    <h3 class="builder-name">Business Builders</h3>
+                                    <p class="builder-url">businessbldrs.com</p>
+                                </div>
+                                <p class="builder-audience">General business clients</p>
+                                <ul class="builder-features">
+                                    <li>Done-for-you marketing services</li>
+                                    <li>Strategy consulting</li>
+                                    <li>Full-service implementation</li>
+                                    <li>Ongoing retainer relationships</li>
+                                </ul>
+                                <p class="builder-price">$5K - $50K+</p>
+                            </div>
+
+                            <div class="builder-card ministry">
+                                <div class="builder-card-header">
+                                    <h3 class="builder-name">Ministry Builders</h3>
+                                    <p class="builder-url">ministrybuilders.com</p>
+                                </div>
+                                <p class="builder-audience">Churches & ministries</p>
+                                <ul class="builder-features">
+                                    <li>Specialized marketing products</li>
+                                    <li>Church growth focus</li>
+                                    <li>Ministry-specific services</li>
+                                    <li>Values-aligned approach</li>
+                                </ul>
+                                <p class="builder-price">Custom pricing</p>
+                            </div>
+
+                            <div class="builder-card agency">
+                                <div class="builder-card-header">
+                                    <h3 class="builder-name">Agency Builders</h3>
+                                    <p class="builder-url">agencybuilders.com</p>
+                                </div>
+                                <p class="builder-audience">Agency owners (peers, NOT clients)</p>
+                                <ul class="builder-features">
+                                    <li>Peer community & networking</li>
+                                    <li>Training and resources</li>
+                                    <li>Agency Builders Retreat (own event)</li>
+                                    <li>May attend FFL events</li>
+                                </ul>
+                                <p class="builder-price">Membership-based</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Channel Mapping -->
+            <section id="channel-mapping" class="section">
+                <div class="section-header">
+                    <div class="section-icon">🗺️</div>
+                    <div>
+                        <h2 class="section-title">Brand → Channel Mapping</h2>
+                        <p class="section-subtitle">Which channels belong to which brand</p>
+                    </div>
+                </div>
+
+                <details class="details-light">
+                    <summary>Future-Focused Leaders / Jay Owen Channels</summary>
+                    <div class="details-content">
+                        <ul class="channel-list" style="color: var(--text-gray);">
+                            <li>futurefocused.ai (master hub) <span class="planned-badge">Planned</span></li>
+                            <li>AI with Jay Newsletter</li>
+                            <li>AI with Jay YouTube</li>
+                            <li>AI with Jay Facebook Group</li>
+                            <li>Jay Owen LinkedIn</li>
+                            <li>Jay Owen Instagram</li>
+                            <li>Jay Owen TikTok</li>
+                            <li>FFL Podcast <span class="planned-badge">Planned</span></li>
+                            <li>jayowenlive.com (redirect → futurefocused.ai)</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="details-light">
+                    <summary>Business Builders Channels</summary>
+                    <div class="details-content">
+                        <ul class="channel-list" style="color: var(--text-gray);">
+                            <li>businessbldrs.com (main site)</li>
+                            <li>Business Builders YouTube</li>
+                            <li>Business Builders Instagram</li>
+                            <li>Business Builders Facebook</li>
+                            <li>Business Builders LinkedIn</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="details-light">
+                    <summary>Ministry Builders Channels</summary>
+                    <div class="details-content">
+                        <ul class="channel-list" style="color: var(--text-gray);">
+                            <li>ministrybuilders.com <span class="planned-badge">Draft Ready</span></li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="details-light">
+                    <summary>Agency Builders Channels</summary>
+                    <div class="details-content">
+                        <ul class="channel-list" style="color: var(--text-gray);">
+                            <li>agencybuilders.com (main site)</li>
+                            <li>Member community platform</li>
+                            <li>Agency Builders Retreat event</li>
+                            <li>Peer networking channels</li>
+                            <li>Agency Builders Instagram</li>
+                            <li>Agency Builders YouTube</li>
+                        </ul>
+                    </div>
+                </details>
+            </section>
+
+            <!-- Section 3: Voice & Tone -->
+            <section id="voice-tone" class="section">
+                <div class="section-header">
+                    <div class="section-icon">🎤</div>
+                    <div>
+                        <h2 class="section-title">Voice & Tone Guidelines</h2>
+                        <p class="section-subtitle">How each brand should sound</p>
+                    </div>
+                </div>
+
+                <table class="voice-table">
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Tone</th>
+                            <th>Voice Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="brand-col">Future-Focused Leaders / Jay Owen</td>
+                            <td class="tone-col">Personal, authentic, enthusiastic but grounded</td>
+                            <td class="example-col">"I tried this and here's what happened..."</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-col">FFL Community</td>
+                            <td class="tone-col">Community-focused, "we" language, aspirational</td>
+                            <td class="example-col">"Together, we're learning to thrive..."</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-col">Business Builders</td>
+                            <td class="tone-col">Professional, results-focused, confident</td>
+                            <td class="example-col">"We build systems that scale..."</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-col">Ministry Builders</td>
+                            <td class="tone-col">Warm, mission-driven, understanding</td>
+                            <td class="example-col">"Helping your ministry reach more people..."</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-col">Agency Builders</td>
+                            <td class="tone-col">Peer-to-peer, practical, relatable</td>
+                            <td class="example-col">"As agency owners, we get it..."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section 4: Cross-Promotion Guidelines -->
+            <section id="cross-promotion" class="section">
+                <div class="section-header">
+                    <div class="section-icon">🔄</div>
+                    <div>
+                        <h2 class="section-title">Cross-Promotion Guidelines</h2>
+                        <p class="section-subtitle">How brands reference each other</p>
+                    </div>
+                </div>
+
+                <div class="promo-section">
+                    <h3 class="promo-title">Jay/FFL Content → Builders</h3>
+                    <ul class="promo-list">
+                        <li class="do">Mention services for those who need "done for you"</li>
+                        <li class="do">Share case studies from Business Builders clients</li>
+                        <li class="do">Offer strategy calls as upgrade path</li>
+                        <li class="dont">Don't hard-sell; lead with value</li>
+                    </ul>
+                </div>
+
+                <div class="promo-section">
+                    <h3 class="promo-title">Agency Builders</h3>
+                    <ul class="promo-list">
+                        <li class="do">Share FFL content as thought leadership</li>
+                        <li class="do">Members can attend FFL events</li>
+                        <li class="dont">Don't push toward Business Builders (they're peers)</li>
+                        <li class="dont">Don't compete with members' agencies</li>
+                    </ul>
+                </div>
+
+                <div class="promo-section">
+                    <h3 class="promo-title">Business Builders promoting FFL Summit</h3>
+                    <ul class="promo-list">
+                        <li class="do">"Business Builders is hosting an AI summit called Future-Focused Leaders"</li>
+                        <li class="do">Fine for existing client communications</li>
+                    </ul>
+                    <p class="promo-note">Note: Bottom-of-funnel audience doesn't care about hierarchy semantics</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Journey Triggers -->
+            <section id="journey-triggers" class="section">
+                <div class="section-header">
+                    <div class="section-icon">🎯</div>
+                    <div>
+                        <h2 class="section-title">Customer Journey Triggers</h2>
+                        <p class="section-subtitle">Signals for tier upgrades</p>
+                    </div>
+                </div>
+
+                <div class="trigger-grid">
+                    <div class="trigger-card">
+                        <div class="trigger-from">Free → Paid Community</div>
+                        <div class="trigger-arrow">↓ Upgrade Signals</div>
+                        <ul class="trigger-signals">
+                            <li>High email engagement (opens, clicks)</li>
+                            <li>Active in Facebook Group</li>
+                            <li>Downloaded multiple resources</li>
+                            <li>Attended free webinars</li>
+                            <li>Direct inquiry about community</li>
+                        </ul>
+                    </div>
+
+                    <div class="trigger-card">
+                        <div class="trigger-from">Community → Business Builders</div>
+                        <div class="trigger-arrow">↓ Upgrade Signals</div>
+                        <ul class="trigger-signals">
+                            <li>Asks about "done for you" services</li>
+                            <li>Expresses budget availability</li>
+                            <li>Needs faster results than DIY</li>
+                            <li>Growing business with revenue</li>
+                            <li>Direct service inquiry</li>
+                        </ul>
+                    </div>
+
+                    <div class="trigger-card">
+                        <div class="trigger-from">Free → Ministry Builders</div>
+                        <div class="trigger-arrow">↓ Upgrade Signals</div>
+                        <ul class="trigger-signals">
+                            <li>Church or ministry leader</li>
+                            <li>Engaged with ministry content</li>
+                            <li>Asks about church-specific solutions</li>
+                            <li>Referral from church network</li>
+                        </ul>
+                    </div>
+
+                    <div class="trigger-card">
+                        <div class="trigger-from">Free → Agency Builders</div>
+                        <div class="trigger-arrow">↓ Upgrade Signals</div>
+                        <ul class="trigger-signals">
+                            <li>Identifies as agency owner</li>
+                            <li>Interested in peer community</li>
+                            <li>Running their own agency</li>
+                            <li>Looking for agency-specific resources</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Team Ownership -->
+            <section id="team-ownership" class="section">
+                <div class="section-header">
+                    <div class="section-icon">👥</div>
+                    <div>
+                        <h2 class="section-title">Team Ownership</h2>
+                        <p class="section-subtitle">Who manages what</p>
+                    </div>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <h3 class="team-area">FFL / Jay Owen Brand</h3>
+                        <ul class="team-roles">
+                            <li>
+                                <span>Content Strategy</span>
+                                <span class="team-owner">Jay</span>
+                            </li>
+                            <li>
+                                <span>Newsletter Management</span>
+                                <span class="team-owner">Jay</span>
+                            </li>
+                            <li>
+                                <span>Social Media</span>
+                                <span class="team-owner">Jackie</span>
+                            </li>
+                            <li>
+                                <span>Podcast Production</span>
+                                <span class="team-owner">Jay</span>
+                            </li>
+                            <li>
+                                <span>Community Management</span>
+                                <span class="team-owner">Jackie</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="team-card">
+                        <h3 class="team-area">Business Builders</h3>
+                        <ul class="team-roles">
+                            <li>
+                                <span>Sales</span>
+                                <span class="team-owner">Jay</span>
+                            </li>
+                            <li>
+                                <span>Client Services</span>
+                                <span class="team-owner">Brandon</span>
+                            </li>
+                            <li>
+                                <span>Project Management</span>
+                                <span class="team-owner">Brandon</span>
+                            </li>
+                            <li>
+                                <span>Marketing</span>
+                                <span class="team-owner">Natalie/Autumn</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="team-card">
+                        <h3 class="team-area">Ministry Builders</h3>
+                        <ul class="team-roles">
+                            <li>
+                                <span>Ministry Relations</span>
+                                <span class="team-owner">Jay</span>
+                            </li>
+                            <li>
+                                <span>Product Development</span>
+                                <span class="team-owner">Jay</span>
+                            </li>
+                            <li>
+                                <span>Client Success</span>
+                                <span class="team-owner">Jay & Chris</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="team-card">
+                        <h3 class="team-area">Agency Builders</h3>
+                        <ul class="team-roles">
+                            <li>
+                                <span>Community Lead</span>
+                                <span class="team-owner">Hope</span>
+                            </li>
+                            <li>
+                                <span>Event Coordination</span>
+                                <span class="team-owner">Stacey</span>
+                            </li>
+                            <li>
+                                <span>Content & Training</span>
+                                <span class="team-owner">Jay</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: KPIs & Metrics -->
+            <section id="kpis" class="section">
+                <div class="section-header">
+                    <div class="section-icon">📈</div>
+                    <div>
+                        <h2 class="section-title">KPIs & Metrics</h2>
+                        <p class="section-subtitle">Success measures by tier</p>
+                    </div>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <h4 class="kpi-brand">FFL Free Tier</h4>
+                        <ul class="kpi-metrics">
+                            <li>
+                                <span>Newsletter Subscribers</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                            <li>
+                                <span>Email Open Rate</span>
+                                <span class="kpi-value">Target: ___%</span>
+                            </li>
+                            <li>
+                                <span>YouTube Subscribers</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                            <li>
+                                <span>Facebook Group Members</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="kpi-card">
+                        <h4 class="kpi-brand">FFL Paid Community</h4>
+                        <ul class="kpi-metrics">
+                            <li>
+                                <span>Founding Members (first 100)</span>
+                                <span class="kpi-value">Target: 100</span>
+                            </li>
+                            <li>
+                                <span>Total Paid Members</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                            <li>
+                                <span>MRR</span>
+                                <span class="kpi-value">Target: $___</span>
+                            </li>
+                            <li>
+                                <span>Monthly vs Annual Ratio</span>
+                                <span class="kpi-value">Target: ___%</span>
+                            </li>
+                            <li>
+                                <span>Churn Rate</span>
+                                <span class="kpi-value">Target: &lt;5%</span>
+                            </li>
+                            <li>
+                                <span>Summit Attendees</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="kpi-card">
+                        <h4 class="kpi-brand">Business Builders</h4>
+                        <ul class="kpi-metrics">
+                            <li>
+                                <span>Active Clients</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                            <li>
+                                <span>Revenue</span>
+                                <span class="kpi-value">Target: $___</span>
+                            </li>
+                            <li>
+                                <span>Avg Project Value</span>
+                                <span class="kpi-value">Target: $___</span>
+                            </li>
+                            <li>
+                                <span>Client Retention</span>
+                                <span class="kpi-value">Target: ___%</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="kpi-card">
+                        <h4 class="kpi-brand">Ministry Builders</h4>
+                        <ul class="kpi-metrics">
+                            <li>
+                                <span>Ministry Clients</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                            <li>
+                                <span>Revenue</span>
+                                <span class="kpi-value">Target: $___</span>
+                            </li>
+                            <li>
+                                <span>Product Sales</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="kpi-card">
+                        <h4 class="kpi-brand">Agency Builders</h4>
+                        <ul class="kpi-metrics">
+                            <li>
+                                <span>Community Members</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                            <li>
+                                <span>Event Attendance</span>
+                                <span class="kpi-value">Target: ___</span>
+                            </li>
+                            <li>
+                                <span>Member Engagement</span>
+                                <span class="kpi-value">Target: ___%</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Tech Stack -->
+            <section id="tech-stack" class="section">
+                <div class="section-header">
+                    <div class="section-icon">⚙️</div>
+                    <div>
+                        <h2 class="section-title">Tech Stack</h2>
+                        <p class="section-subtitle">Tools powering each brand</p>
+                    </div>
+                </div>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4 class="tech-category">Email & Newsletter</h4>
+                        <ul class="tech-tools">
+                            <li class="tbd">Email platform: TBD</li>
+                            <li class="tbd">Automation: TBD</li>
+                            <li class="tbd">Landing pages: TBD</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4 class="tech-category">Community Platform</h4>
+                        <ul class="tech-tools">
+                            <li>Paid community: <strong>Circle</strong></li>
+                            <li class="tbd">Course hosting: TBD</li>
+                            <li class="tbd">Event platform: TBD</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4 class="tech-category">CRM & Sales</h4>
+                        <ul class="tech-tools">
+                            <li class="tbd">CRM: TBD</li>
+                            <li class="tbd">Proposals: TBD</li>
+                            <li class="tbd">Payments: TBD</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4 class="tech-category">Content & Social</h4>
+                        <ul class="tech-tools">
+                            <li class="tbd">Scheduling: TBD</li>
+                            <li class="tbd">Video hosting: TBD</li>
+                            <li class="tbd">Podcast hosting: TBD</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4 class="tech-category">Websites</h4>
+                        <ul class="tech-tools">
+                            <li class="tbd">futurefocused.ai: TBD</li>
+                            <li class="tbd">businessbldrs.com: TBD</li>
+                            <li class="tbd">ministrybuilders.com: TBD</li>
+                            <li class="tbd">agencybuilders.com: TBD</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4 class="tech-category">Analytics</h4>
+                        <ul class="tech-tools">
+                            <li class="tbd">Web analytics: TBD</li>
+                            <li class="tbd">Email analytics: TBD</li>
+                            <li class="tbd">Dashboard: TBD</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Brand Assets -->
+            <section id="brand-assets" class="section">
+                <div class="section-header">
+                    <div class="section-icon">🎨</div>
+                    <div>
+                        <h2 class="section-title">Brand Assets</h2>
+                        <p class="section-subtitle">Quick links to design resources</p>
+                    </div>
+                </div>
+
+                <div class="assets-grid">
+                    <div class="asset-card">
+                        <div class="asset-icon">🖼️</div>
+                        <div class="asset-name">FFL Logos</div>
+                        <div class="asset-type">PNG, SVG</div>
+                    </div>
+
+                    <div class="asset-card">
+                        <div class="asset-icon">🎨</div>
+                        <div class="asset-name">Color Palette</div>
+                        <div class="asset-type">Brand colors</div>
+                    </div>
+
+                    <div class="asset-card">
+                        <div class="asset-icon">📝</div>
+                        <div class="asset-name">Typography</div>
+                        <div class="asset-type">Font files</div>
+                    </div>
+
+                    <div class="asset-card">
+                        <div class="asset-icon">📷</div>
+                        <div class="asset-name">Jay Owen Photos</div>
+                        <div class="asset-type">Headshots</div>
+                    </div>
+
+                    <div class="asset-card">
+                        <div class="asset-icon">📱</div>
+                        <div class="asset-name">Social Templates</div>
+                        <div class="asset-type">Canva, Figma</div>
+                    </div>
+
+                    <div class="asset-card">
+                        <div class="asset-icon">📧</div>
+                        <div class="asset-name">Email Templates</div>
+                        <div class="asset-type">HTML</div>
+                    </div>
+
+                    <div class="asset-card">
+                        <div class="asset-icon">📊</div>
+                        <div class="asset-name">Presentation Deck</div>
+                        <div class="asset-type">Keynote, PPTX</div>
+                    </div>
+
+                    <div class="asset-card">
+                        <div class="asset-icon">📄</div>
+                        <div class="asset-name">Brand Guidelines</div>
+                        <div class="asset-type">PDF</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Action Items -->
+            <section id="action-items" class="section">
+                <div class="section-header">
+                    <div class="section-icon">✅</div>
+                    <div>
+                        <h2 class="section-title">Action Items</h2>
+                        <p class="section-subtitle">Current priorities</p>
+                    </div>
+                </div>
+
+                <ul class="action-list">
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Build futurefocused.ai master hub landing page</div>
+                            <div class="action-desc">Create the primary website as the central entry point for the brand ecosystem</div>
+                        </div>
+                        <span class="action-priority high">High</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Set up jayowenlive.com redirect to futurefocused.ai</div>
+                            <div class="action-desc">Configure DNS/redirect for speaking site</div>
+                        </div>
+                        <span class="action-priority high">High</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Rebrand podcast to FFL Podcast</div>
+                            <div class="action-desc">Transition "Building a Business that Lasts" podcast to FFL branding</div>
+                        </div>
+                        <span class="action-priority medium">Medium</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Add paid tier to Circle community</div>
+                            <div class="action-desc">Configure founding member pricing ($67/mo or $670/year), set up paid spaces/content, define member benefits and access levels</div>
+                        </div>
+                        <span class="action-priority high">High</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Launch founding member campaign</div>
+                            <div class="action-desc">Create urgency-driven launch sequence for first 100 members at $67/mo locked rate (increases to $97/mo after)</div>
+                        </div>
+                        <span class="action-priority high">High</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Schedule Jay's 2 monthly calls</div>
+                            <div class="action-desc">Set up recurring calendar for monthly training call + monthly Q&A call with members</div>
+                        </div>
+                        <span class="action-priority high">High</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Finalize FFL Summit 2026 details</div>
+                            <div class="action-desc">April 6-8, St. Augustine Beach - complete planning and promotion</div>
+                        </div>
+                        <span class="action-priority medium">Medium</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Document tech stack decisions</div>
+                            <div class="action-desc">Select and document tools for email, community, CRM, etc.</div>
+                        </div>
+                        <span class="action-priority low">Low</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Assign team ownership roles</div>
+                            <div class="action-desc">Fill in TBD roles across all brand areas</div>
+                        </div>
+                        <span class="action-priority low">Low</span>
+                    </li>
+
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="this.classList.toggle('checked')"></div>
+                        <div class="action-content">
+                            <div class="action-title">Set KPI targets</div>
+                            <div class="action-desc">Define specific numeric targets for all metrics</div>
+                        </div>
+                        <span class="action-priority low">Low</span>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // Update active state
+                document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Update active nav on scroll
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
