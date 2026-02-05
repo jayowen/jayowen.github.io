@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Audit Report - @philhopper_kc | February 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #053B5A;
+            --primary-light: #0a5a87;
+            --accent: #00d084;
+            --accent-dark: #00b371;
+            --bg: #FAFBFC;
+            --white: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --border: #E5E9ED;
+            --text: #1a1a2e;
+            --text-muted: #5a6578;
+            --text-light: #8892a0;
+            --success: #00d084;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gold: #f59e0b;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        /* Decorative background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 3rem 0 4rem;
+            color: white;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 208, 132, 0.2);
+            border: 1px solid rgba(0, 208, 132, 0.4);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .header-badge::before {
+            content: '★';
+        }
+
+        .header h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header .handle {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .header .date {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-header h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        /* Hero Stats Card */
+        .hero-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: -2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,208,132,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-card h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero-card .big-stat {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .hero-card .stat-label {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero-card p {
+            color: rgba(255,255,255,0.85);
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-card p strong {
+            color: var(--accent);
+        }
+
+        /* Explainer boxes */
+        .explainer {
+            background: linear-gradient(135deg, rgba(5, 59, 90, 0.04) 0%, rgba(5, 59, 90, 0.02) 100%);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .explainer h4 {
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .explainer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .explainer.success {
+            background: linear-gradient(135deg, rgba(0, 208, 132, 0.08) 0%, rgba(0, 208, 132, 0.02) 100%);
+            border-left-color: var(--accent);
+        }
+
+        .explainer.success h4 {
+            color: var(--accent-dark);
+        }
+
+        /* Comparison Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.5rem -0.5rem;
+            padding: 0 0.5rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            text-align: left;
+            padding: 1rem 0.75rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .winner-row {
+            background: linear-gradient(90deg, rgba(0, 208, 132, 0.08) 0%, transparent 100%);
+        }
+
+        .comparison-table .winner-row td:first-child {
+            border-left: 3px solid var(--accent);
+            font-weight: 600;
+        }
+
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+        }
+
+        .rank-1 { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .rank-2 { background: #94a3b8; color: white; }
+        .rank-3 { background: #a78bfa; color: white; }
+        .rank-4 { background: var(--border); color: var(--text-light); }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .metric-card.highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border: none;
+            color: white;
+        }
+
+        .metric-value {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .metric-card.highlight .metric-value {
+            color: white;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .metric-card.highlight .metric-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .metric-rank {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            background: rgba(0, 208, 132, 0.15);
+            color: var(--accent-dark);
+            font-weight: 600;
+        }
+
+        .metric-card.highlight .metric-rank {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        /* Checklists */
+        .checklist-section {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .checklist-section h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checklist-section h4.team {
+            color: var(--warning);
+        }
+
+        .checklist-section h4.pastor {
+            color: var(--primary);
+        }
+
+        .checklist-section h4::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            background: white;
+        }
+
+        .checklist-text strong {
+            display: block;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .checklist-text span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Action Items */
+        .action-list {
+            list-style: none;
+        }
+
+        .action-item {
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: var(--bg);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .action-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(5, 59, 90, 0.08);
+        }
+
+        .action-item.priority-high {
+            border-left: 4px solid var(--danger);
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.04) 0%, var(--bg) 100%);
+        }
+
+        .action-item.priority-medium {
+            border-left: 4px solid var(--warning);
+        }
+
+        .action-item.priority-low {
+            border-left: 4px solid var(--accent);
+        }
+
+        .action-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            color: var(--text-muted);
+        }
+
+        .action-item.priority-high .action-number {
+            background: var(--danger);
+            color: white;
+        }
+
+        .action-content {
+            flex: 1;
+        }
+
+        .action-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .action-why {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .action-how {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        .action-how strong {
+            color: var(--primary);
+        }
+
+        /* Hooks Section */
+        .hooks-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .hook-card {
+            background: var(--bg);
+            padding: 1.25rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--border);
+        }
+
+        .hook-card.swat { border-left-color: var(--danger); }
+        .hook-card.bold { border-left-color: var(--warning); }
+        .hook-card.question { border-left-color: var(--accent); }
+        .hook-card.interrupt { border-left-color: var(--primary); }
+
+        .hook-card strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .hook-card.swat strong { color: var(--danger); }
+        .hook-card.bold strong { color: var(--warning); }
+        .hook-card.question strong { color: var(--accent-dark); }
+        .hook-card.interrupt strong { color: var(--primary); }
+
+        .hook-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Quick Wins */
+        .quick-wins {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.02) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .quick-wins h3 {
+            color: var(--warning);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .quick-wins ul {
+            list-style: none;
+        }
+
+        .quick-wins li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .quick-wins li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--warning);
+            font-weight: bold;
+        }
+
+        /* Schedule Grid */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .schedule-day {
+            background: var(--bg);
+            border-radius: 10px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .schedule-day.highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border: none;
+            color: white;
+        }
+
+        .day-name {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .schedule-day.highlight .day-name {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .day-content {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Bottom Line CTA */
+        .bottom-line {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-line::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,208,132,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .bottom-line h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .bottom-line p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-logo {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-card .big-stat {
+                font-size: 2.75rem;
+            }
+
+            .schedule-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .action-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">#1 in Total Reach</div>
+            <h1>Instagram Audit</h1>
+            <div class="handle">@philhopper_kc</div>
+            <p class="subtitle">
+                The account is already winning where it matters most. Here's the data and a simple action plan to keep growing.
+            </p>
+            <span class="date">February 2026 Audit</span>
+        </header>
+
+        <!-- Hero Stats -->
+        <div class="card hero-card">
+            <h2>The Big Picture</h2>
+            <div class="big-stat">617K–686K</div>
+            <div class="stat-label">Estimated 12-Month Reach</div>
+            <p>
+                That's <strong>3.4× more reach than Kingdom City</strong> (the largest account by followers) — projected over the next year. Your content is working.
+            </p>
+        </div>
+
+        <!-- What This Means -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background: var(--primary);">?</div>
+                <h2>What Does This Mean?</h2>
+            </div>
+
+            <div class="explainer">
+                <h4>Followers vs. Reach — What's the Difference?</h4>
+                <p>
+                    <strong>Followers</strong> = people who clicked "Follow" on your account.<br>
+                    <strong>Reach</strong> = how many people actually see your content (followers + people who discover you through Reels, Explore, shares, etc.)
+                </p>
+            </div>
+
+            <p style="font-size: 1.05rem; margin-bottom: 1rem;">
+                <strong>Here's the truth:</strong> Follower count is a vanity metric. Reach is what actually matters because that's real people seeing the message.
+            </p>
+
+            <p style="color: var(--text-muted);">
+                The account has 8,263 followers but at the current pace, it's projected to reach 617,000–686,000 people over the next 12 months. That means Instagram's algorithm loves the content and shows it to people who don't even follow the account. That's exactly the goal.
+            </p>
+        </div>
+
+        <!-- Comparison -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">1</div>
+                <h2>How You Stack Up</h2>
+            </div>
+
+            <div class="explainer">
+                <h4>How to Read This Table</h4>
+                <p>
+                    We compared 4 church-related Instagram accounts in Kansas City.
+                    Look at the "Reach Multiplier" row — that's the most important number.
+                    It shows how much reach you get compared to your follower count. Higher = better.
+                </p>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>@philhopper_kc</th>
+                            <th>@abundantlifels</th>
+                            <th>@kingdomcitykc</th>
+                            <th>@journeychurchint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Followers</td>
+                            <td>8,263</td>
+                            <td>10.7K</td>
+                            <td>14.3K</td>
+                            <td>12.3K</td>
+                        </tr>
+                        <tr>
+                            <td>Avg Views/Reel</td>
+                            <td>7,500 <span class="rank-badge rank-2">2</span></td>
+                            <td><strong>9,000</strong> <span class="rank-badge rank-1">1</span></td>
+                            <td>2,800</td>
+                            <td>1,900</td>
+                        </tr>
+                        <tr class="winner-row">
+                            <td>Top Performing Reel</td>
+                            <td><strong>41,200</strong> <span class="rank-badge rank-1">1</span></td>
+                            <td>12,900</td>
+                            <td>4,937</td>
+                            <td>25,000</td>
+                        </tr>
+                        <tr class="winner-row">
+                            <td>Videos Over 10K Views</td>
+                            <td><strong>6+</strong> <span class="rank-badge rank-1">1</span></td>
+                            <td>4+</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class="winner-row">
+                            <td>12-Month Reach (Est.)</td>
+                            <td><strong>617–686K</strong> <span class="rank-badge rank-1">1</span></td>
+                            <td>377–411K</td>
+                            <td>185–203K</td>
+                            <td>180–200K</td>
+                        </tr>
+                        <tr class="winner-row">
+                            <td>Reach Multiplier</td>
+                            <td><strong>0.91×</strong> <span class="rank-badge rank-1">1</span></td>
+                            <td>0.84×</td>
+                            <td>0.20×</td>
+                            <td>0.15×</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 1rem; font-style: italic;">
+                *Estimates are extrapolated from the last 90 days of visible Instagram Reels data.
+            </p>
+
+            <div class="explainer success">
+                <h4>What "Reach Multiplier" Means</h4>
+                <p>
+                    The 0.91× means for every follower, the account is reaching almost 1 person through Reels.
+                    Kingdom City's 0.20× means they only reach 0.2 people per follower.
+                    <strong>This content is 4.5× more effective at reaching people.</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Strengths -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background: var(--accent);">✓</div>
+                <h2>What's Working Well</h2>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card highlight">
+                    <div class="metric-value">#1</div>
+                    <div class="metric-label">Reach Multiplier</div>
+                    <div class="metric-rank">Most efficient</div>
+                </div>
+                <div class="metric-card highlight">
+                    <div class="metric-value">6+</div>
+                    <div class="metric-label">Viral Videos (10K+)</div>
+                    <div class="metric-rank">Most of any account</div>
+                </div>
+                <div class="metric-card highlight">
+                    <div class="metric-value">41.2K</div>
+                    <div class="metric-label">Best Performing Reel</div>
+                    <div class="metric-rank">Highest single video</div>
+                </div>
+            </div>
+
+            <p style="color: var(--text-muted); margin-top: 1rem;">
+                <strong>Translation:</strong> The content resonates. When people see the Reels, they watch them.
+                Instagram notices this and shows the content to more people. There's no content problem —
+                there's a discovery problem. The action items below will help more people find the account in the first place.
+            </p>
+        </div>
+
+        <!-- Daily Checklist -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background: var(--danger);">!</div>
+                <h2>Daily Action Checklist</h2>
+            </div>
+
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                These should be done every single day. They take 15–20 minutes total and will significantly boost growth.
+            </p>
+
+            <div class="checklist-section">
+                <h4 class="team">Assigned to Team Member</h4>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <strong>Reply to EVERY comment on posts</strong>
+                        <span>Within 1 hour if possible. Instagram's algorithm rewards posts with active conversations. Even a simple "Thank you!" or emoji counts. Ask a follow-up question to keep the conversation going.</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <strong>Check tagged posts and repost to Stories</strong>
+                        <span>When someone tags the account, share it to Stories within 24 hours. This builds community and encourages more people to tag. Add a quick "Thanks for sharing!" sticker.</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <strong>Respond to all DMs</strong>
+                        <span>Even if it's just a quick voice note or emoji. Instagram tracks response rates and rewards accounts that engage.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist-section">
+                <h4 class="pastor">Assigned to Pastor Phil</h4>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <strong>Post to Stories at least once</strong>
+                        <span>Takes 60 seconds or less. Share a simple encouragement, a Bible verse, or a quick thought for the day. Stories keep you at the top of people's feeds and build personal connection.</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <strong>Engage with 3–5 related accounts</strong>
+                        <span>Leave genuine comments on other KC church accounts, pastor accounts, or faith-based creators. Not "Great post!" but actual thoughtful comments. This puts you on their followers' radar.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Growth Action Plan -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--primary), var(--accent));">↑</div>
+                <h2>Growth Action Plan</h2>
+            </div>
+
+            <p style="margin-bottom: 1rem; font-size: 1.05rem;">
+                <strong>Despite the fact that Pastor Phil's account is doing well compared to the others mentioned, there is still PLENTY of action that can be taken to improve in significant ways.</strong>
+            </p>
+
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                These are ranked by impact. Start with #1 and work your way down. You don't have to do everything at once.
+            </p>
+
+            <ul class="action-list">
+                <li class="action-item priority-high">
+                    <div class="action-number">1</div>
+                    <div class="action-content">
+                        <div class="action-title">Create "SWAT Cop to Pastor" Content Series</div>
+                        <div class="action-why">
+                            This is a super compelling story to press into. It's unique, compelling, and
+                            people are naturally curious about it. The bio mentions it, but the content doesn't show it.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Create 4–5 Reels telling different parts of the story.
+                            "Why I left SWAT", "Hardest day on the force", "The moment I knew God was calling me", etc.
+                            These will likely be the best-performing content ever.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-high">
+                    <div class="action-number">2</div>
+                    <div class="action-content">
+                        <div class="action-title">Cross-Promote with @abundantlifels</div>
+                        <div class="action-why">
+                            You're the Lead Pastor of Abundant Life. The church account has 10.7K followers —
+                            many of whom probably don't follow your personal account yet. That's free audience.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Every time a Reel is posted, have @abundantlifels share it to their Stories
+                            with "Follow Pastor Phil for more." Do the same for their content. Tag each other in posts.
+                            This should result in 20–30% of their followers following over time.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-high">
+                    <div class="action-number">3</div>
+                    <div class="action-content">
+                        <div class="action-title">Post 5 Reels Per Week</div>
+                        <div class="action-why">
+                            The algorithm rewards consistent posting. More Reels = more chances for the algorithm
+                            to push your content to new audiences. Your content already performs well, so volume will accelerate growth.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Aim for 5 Reels per week, plus daily Stories.
+                            Batch record on one day if that's easier. Consistency matters more than perfection.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-medium">
+                    <div class="action-number">4</div>
+                    <div class="action-content">
+                        <div class="action-title">Pin Your Best Reel to Profile</div>
+                        <div class="action-why">
+                            When someone lands on your profile, the first thing they see should be your best content.
+                            Your top Reel hit 41,200 views — that's social proof that builds instant credibility.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Pin the best performing Reel to the profile.
+                            Takes 10 seconds. Update this whenever there's a new top performer.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-medium">
+                    <div class="action-number">5</div>
+                    <div class="action-content">
+                        <div class="action-title">Update Display Name for Search</div>
+                        <div class="action-why">
+                            Instagram search uses your display name. Adding keywords helps people find you
+                            when they search for pastors or faith content in the app.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Update display name from "Phil Hopper" to "Phil Hopper | Pastor"
+                            or "Phil Hopper | Pastor & Leadership." This helps the profile show up in more searches.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-medium">
+                    <div class="action-number">6</div>
+                    <div class="action-content">
+                        <div class="action-title">Use Instagram Collab Posts with @abundantlifels</div>
+                        <div class="action-why">
+                            Collab posts are different from tagging — they actually appear on BOTH feeds simultaneously.
+                            This means the church's 10.7K followers see your content in their main feed, not just Stories.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> When posting Reels, use the Invite Collaborator feature to add @abundantlifels.
+                            Once accepted, the post shows on both profiles. Do this 1–2× per week for maximum cross-exposure.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-medium">
+                    <div class="action-number">7</div>
+                    <div class="action-content">
+                        <div class="action-title">Fix Your Bio</div>
+                        <div class="action-why">
+                            The current bio gets cut off and doesn't have a clear call-to-action.
+                            When someone lands on the profile, they should know exactly what it's about and what to do next.
+                        </div>
+                        <div class="action-how">
+                            <strong>Change to:</strong><br>
+                            Lead Pastor @abundantlifels | Former KCPD SWAT<br>
+                            Helping you Live the Abundant Life<br>
+                            Kansas City<br>
+                            Free devotional below
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-low">
+                    <div class="action-number">8</div>
+                    <div class="action-content">
+                        <div class="action-title">Tag Local Areas in Posts</div>
+                        <div class="action-why">
+                            Location tags help local people discover the account more effectively than hashtags.
+                            When a location is tagged, the content shows up when people browse that area.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Tag locations such as "Lee's Summit, Missouri," "Kansas City,"
+                            or "Abundant Life Church" on every post and Reel. This puts the profile on the map — literally —
+                            for people searching in the area.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-low">
+                    <div class="action-number">9</div>
+                    <div class="action-content">
+                        <div class="action-title">Post Behind-the-Scenes Content</div>
+                        <div class="action-why">
+                            Sermon clips are great, but people also want to know the person behind the pulpit.
+                            Personal content builds connection and trust.
+                        </div>
+                        <div class="action-how">
+                            <strong>Ideas:</strong> Day-in-the-life, family moments (with their permission),
+                            sermon prep process, funny church moments, your morning routine, what you're reading.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-low">
+                    <div class="action-number">10</div>
+                    <div class="action-content">
+                        <div class="action-title">Guest on More Podcasts</div>
+                        <div class="action-why">
+                            Podcast appearances put the account in front of new audiences, and the "Former SWAT Cop to Pastor"
+                            story is perfect podcast material. Plus, each appearance generates free content.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Get booked on faith-based, leadership, or local KC podcasts.
+                            After each appearance, pull 3–5 short clips (30–60 seconds) of the best moments and
+                            post them as Reels. One podcast = a week's worth of content.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-low">
+                    <div class="action-number">11</div>
+                    <div class="action-content">
+                        <div class="action-title">Collaborate with Other Pastors and Friends with Reach</div>
+                        <div class="action-why">
+                            When Pastor Phil appears on someone else's account, their followers see him.
+                            It's the fastest way to reach a new audience.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Collaborate with pastors, ministry leaders, or friends who have engaged followings for a collab Reel.
+                            Could be a joint Q&A, a conversation about faith and life, or even a fun challenge video. Kingdom reach extends far beyond any one city.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-low">
+                    <div class="action-number">12</div>
+                    <div class="action-content">
+                        <div class="action-title">End Captions with Questions</div>
+                        <div class="action-why">
+                            Questions prompt comments. Comments boost the algorithm. More comments = more reach.
+                        </div>
+                        <div class="action-how">
+                            <strong>Examples:</strong> "What's one thing you're trusting God with this week?"
+                            "Drop a 🙏 if this hit home" "Tag someone who needs to hear this"
+                        </div>
+                    </div>
+                </li>
+
+                <li class="action-item priority-low">
+                    <div class="action-number">13</div>
+                    <div class="action-content">
+                        <div class="action-title">Use ManyChat for Comment-to-DM Automation</div>
+                        <div class="action-why">
+                            Keyword triggers drive comments (boosting algorithm) while automatically delivering value via DM.
+                            This turns passive viewers into engaged followers who want more.
+                        </div>
+                        <div class="action-how">
+                            <strong>Recommendation:</strong> Set up ManyChat to auto-DM links when people comment specific keywords.
+                            Post a clip and say "Comment SERMON to get the full message" or "Comment PODCAST to hear the whole conversation."
+                            This generates engagement + direct connection.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Reel Hooks -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background: var(--accent);">~</div>
+                <h2>Reel Hooks That Work</h2>
+            </div>
+
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                The first 1–2 seconds determine if someone keeps watching or scrolls past.
+                Start every Reel with one of these proven hooks to grab attention immediately.
+            </p>
+
+            <div class="hooks-grid">
+                <div class="hook-card swat">
+                    <strong>The SWAT Angle</strong>
+                    <p>"As a former SWAT cop, I learned..."<br>
+                    "15 years on the force taught me this about faith..."<br>
+                    "Here's what SWAT training and prayer have in common..."</p>
+                </div>
+
+                <div class="hook-card bold">
+                    <strong>The Bold Statement</strong>
+                    <p>"Most pastors won't tell you this..."<br>
+                    "Here's what 25 years in ministry taught me..."<br>
+                    "This changed everything about how I pray..."</p>
+                </div>
+
+                <div class="hook-card question">
+                    <strong>The Question</strong>
+                    <p>"Have you ever felt like God wasn't listening?"<br>
+                    "Why do most Christians struggle with this?"<br>
+                    "What would you do if God asked you to leave everything?"</p>
+                </div>
+
+                <div class="hook-card interrupt">
+                    <strong>The Pattern Interrupt</strong>
+                    <p>"Stop scrolling — you need to hear this..."<br>
+                    "If you're struggling with [topic], watch this..."<br>
+                    "I almost didn't share this, but..."</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                <strong>Pro tip:</strong> The SWAT angle is a unique differentiator. No other pastor has this story.
+                Lead with it often — it creates instant curiosity and sets the profile apart.
+            </p>
+        </div>
+
+        <!-- Quick Wins -->
+        <div class="quick-wins">
+            <h3>⚡ 5-Minute Quick Wins (Do These Today)</h3>
+            <ul>
+                <li>Reply to the last 10 comments on recent posts</li>
+                <li>Review tagged posts and reshare any not yet shared</li>
+                <li>Ensure @abundantlifels is in the bio</li>
+                <li>Post one Story daily</li>
+                <li>Leave genuine comments on 3 other local church accounts</li>
+            </ul>
+        </div>
+        <!-- Bottom Line -->
+        <div class="bottom-line">
+            <h2>The Bottom Line</h2>
+            <p>
+                What's there is working well — we just need more of it and more consistency in the little things
+                to produce big results in the long term.
+            </p>
+        </div>
+
+        <!-- Growth Targets -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background: var(--accent);">🎯</div>
+                <h2>Your Growth Targets</h2>
+            </div>
+
+            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="metric-card">
+                    <div class="metric-value">10K</div>
+                    <div class="metric-label">6-Month Goal</div>
+                    <div class="metric-rank">+21% growth</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">15K</div>
+                    <div class="metric-label">12-Month Goal</div>
+                    <div class="metric-rank">+82% growth</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">5</div>
+                    <div class="metric-label">Reels Per Week</div>
+                    <div class="metric-rank">+ Daily Stories</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Comment Replies</div>
+                    <div class="metric-rank">Every single one</div>
+                </div>
+            </div>
+
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.95rem;">
+                These targets are realistic based on your current performance.
+                The SWAT story content series alone could accelerate this significantly if one goes viral.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
