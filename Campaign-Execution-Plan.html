@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Execution Plan — Human vs AI Task Breakdown</title>
+<style>
+  :root {
+    --gold: #C8A84E;
+    --gold-light: #F5ECD7;
+    --black: #1A1A1A;
+    --gray-800: #333;
+    --gray-600: #666;
+    --gray-400: #999;
+    --gray-200: #E5E5E5;
+    --gray-100: #F5F5F5;
+    --white: #FFF;
+    --human: #7C3AED;
+    --human-bg: #F3EEFF;
+    --ai: #059669;
+    --ai-bg: #ECFDF5;
+    --both: #2563EB;
+    --both-bg: #EFF6FF;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-100); color: var(--gray-800); line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+  .header { background: linear-gradient(135deg, var(--black), #2a2215); color: var(--white); padding: 48px; }
+  .header h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+  .header h1 span { color: var(--gold); }
+  .header p { color: rgba(255,255,255,0.6); font-size: 16px; max-width: 700px; }
+  .legend { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.8); }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .legend-dot.human { background: var(--human); }
+  .legend-dot.ai { background: var(--ai); }
+  .legend-dot.both { background: var(--both); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  .phase { margin-bottom: 48px; }
+  .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--gray-200); }
+  .phase-num { width: 40px; height: 40px; background: var(--black); color: var(--gold); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0; }
+  .phase-header h2 { font-size: 22px; font-weight: 700; }
+  .phase-header .phase-dates { margin-left: auto; font-size: 13px; color: var(--gray-400); font-weight: 500; }
+
+  .role-section { margin-bottom: 32px; }
+  .role-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .role-badge { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; }
+  .role-badge.am { background: #DBEAFE; color: #1E40AF; }
+  .role-badge.pm { background: #FEF3C7; color: #92400E; }
+  .role-badge.cm { background: #FCE7F3; color: #9D174D; }
+  .role-badge.tm { background: #D1FAE5; color: #065F46; }
+  .role-badge.ceo { background: var(--gold-light); color: #8B7028; }
+  .role-badge.ops { background: #E0E7FF; color: #3730A3; }
+  .role-header h3 { font-size: 16px; font-weight: 700; }
+
+  .task-list { display: grid; gap: 8px; }
+  .task {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm); padding: 14px 16px;
+    transition: box-shadow 0.2s;
+  }
+  .task:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .task-type {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+    white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+  }
+  .task-type.human { background: var(--human-bg); color: var(--human); }
+  .task-type.ai { background: var(--ai-bg); color: var(--ai); }
+  .task-type.both { background: var(--both-bg); color: var(--both); }
+  .task-info { flex: 1; }
+  .task-title { font-size: 14px; font-weight: 600; color: var(--black); }
+  .task-desc { font-size: 13px; color: var(--gray-600); margin-top: 2px; }
+  .task-detail { font-size: 12px; color: var(--gray-400); margin-top: 4px; font-style: italic; }
+
+  .workflow-box {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 24px; margin-bottom: 16px;
+  }
+  .workflow-box h3 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 16px; }
+
+  .flow-step { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--gray-200); }
+  .flow-step:last-child { border-bottom: none; }
+  .flow-num { width: 28px; height: 28px; background: var(--black); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .flow-content { flex: 1; }
+  .flow-content strong { color: var(--black); }
+  .flow-content p { font-size: 14px; color: var(--gray-600); }
+  .flow-who { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .flow-who.ai-who { color: var(--ai); }
+  .flow-who.human-who { color: var(--human); }
+  .flow-who.both-who { color: var(--both); }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+  .summary-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; text-align: center; }
+  .summary-card .big-num { font-size: 40px; font-weight: 800; line-height: 1; }
+  .summary-card .big-num.ai-num { color: var(--ai); }
+  .summary-card .big-num.human-num { color: var(--human); }
+  .summary-card .big-num.both-num { color: var(--both); }
+  .summary-card .label { font-size: 13px; color: var(--gray-600); margin-top: 8px; }
+
+  .callout {
+    background: linear-gradient(135deg, var(--ai-bg), #D1FAE5);
+    border: 1px solid #A7F3D0;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #065F46;
+  }
+  .callout strong { color: #047857; }
+
+  @media (max-width: 700px) {
+    .header { padding: 32px 24px; }
+    .header h1 { font-size: 24px; }
+    .container { padding: 24px; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .legend { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Campaign <span>Execution Plan</span></h1>
+  <p>Human vs. AI task breakdown with step-by-step workflow for the "Future-Proof Your Business" Q1 2026 campaign.</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot ai"></div> AI Agent handles autonomously</div>
+    <div class="legend-item"><div class="legend-dot human"></div> Human team member required</div>
+    <div class="legend-item"><div class="legend-dot both"></div> AI drafts, human approves/executes</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SUMMARY -->
+  <div class="summary-grid">
+    <div class="summary-card"><div class="big-num ai-num">34</div><div class="label">Tasks AI handles<br>autonomously</div></div>
+    <div class="summary-card"><div class="big-num human-num">14</div><div class="label">Tasks requiring<br>human action</div></div>
+    <div class="summary-card"><div class="big-num both-num">18</div><div class="label">AI drafts, human<br>approves + posts</div></div>
+  </div>
+
+  <div class="callout">
+    <strong>Bottom line:</strong> The AI agents can handle ~75% of the campaign work autonomously (writing, CRM setup, QA, tracking). The human team's role shifts to approving, recording video, posting to platforms, and managing ad spend. This means your team spends time on high-value activities instead of content creation and admin.
+  </div>
+
+  <!-- ================================================ -->
+  <!-- PHASE 0: PRE-LAUNCH -->
+  <!-- ================================================ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">0</div>
+      <h2>Pre-Launch Setup</h2>
+      <span class="phase-dates">Now - Feb 9</span>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><span class="role-badge cm">CM</span><h3>Creative Manager</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Write all 4 email nurture sequences (Sequence A + B)</div><div class="task-desc">Full copy for 7 emails, ready to paste into HubSpot</div><div class="task-detail">Already drafted in campaign doc. /cm can refine further.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Write all Week 1-2 social media posts</div><div class="task-desc">LinkedIn, Instagram, Facebook copy — 10 posts total</div><div class="task-detail">Already drafted. /cm can generate platform-specific variations.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Write Blog Post #1: "Why Your Marketing Isn't Working"</div><div class="task-desc">Full 1,200-word SEO blog draft</div><div class="task-detail">/cm generates the full draft with target keywords.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Write Blog Post #2: "AI-Powered Marketing in 2026"</div><div class="task-desc">Full 1,500-word SEO blog draft</div><div class="task-detail">/cm generates the full draft.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Create carousel slide copy for Instagram posts</div><div class="task-desc">Slide-by-slide text for each carousel</div><div class="task-detail">/cm generates text; human designer creates visuals.</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Design Instagram carousel graphics</div><div class="task-desc">Create visual slides for Week 1-2 carousel posts</div><div class="task-detail">Nearshore designer or Canva — needs human creative direction.</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Record Jay's 60-sec talking head video</div><div class="task-desc">"Why most marketing doesn't work" — Feb 12 Facebook post</div><div class="task-detail">Jay on camera. /cm can provide the script and talking points.</div></div></div>
+        <div class="task"><span class="task-type both">AI + Human</span><div class="task-info"><div class="task-title">Jay reviews and approves all Week 1-2 content</div><div class="task-desc">Final sign-off on all posts, emails, and blog drafts</div><div class="task-detail">AI presents content for review. Jay approves or requests changes.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><span class="role-badge am">AM</span><h3>Account Manager</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Create HubSpot list: "Q1 2026 Campaign Leads"</div><div class="task-desc">Smart list filtering contacts from campaign sources</div><div class="task-detail">/am creates via HubSpot MCP tools.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Create HubSpot list: "Retreat Registrants"</div><div class="task-desc">List for Future Focused Leaders signups</div><div class="task-detail">/am creates via HubSpot MCP tools.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Create HubSpot list: "Hot Leads" (score 50+)</div><div class="task-desc">Active list for high-engagement contacts with no deal</div><div class="task-detail">/am creates via HubSpot MCP tools.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Create lead scoring property in HubSpot</div><div class="task-desc">Set up scoring rules: Masterclass +10, Quote +25, Retreat +30, etc.</div><div class="task-detail">/am creates property via HubSpot MCP.</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Build HubSpot email workflows in the UI</div><div class="task-desc">Create 4 workflows: Masterclass nurture, Retreat confirmation, Discovery follow-up, Re-engagement</div><div class="task-detail">Requires HubSpot workflow builder UI. AI provides the specs; human builds in HubSpot.</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Create email templates in HubSpot</div><div class="task-desc">Build the 7 email templates with BB branding in HubSpot email editor</div><div class="task-detail">AI provides all copy. Human formats in HubSpot's email builder with images/buttons.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><span class="role-badge tm">TM</span><h3>Technical Manager</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">QA all website landing pages and forms</div><div class="task-desc">Test /request-quote form, Masterclass signup, all CTAs</div><div class="task-detail">/tm uses Playwright to navigate, click, screenshot, and verify every form and link.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Verify analytics tracking is firing</div><div class="task-desc">Check GA4, GTM, Facebook Pixel on key pages</div><div class="task-detail">/tm uses Playwright to inspect network requests and verify tracking scripts.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Check website performance (page speed)</div><div class="task-desc">Run performance audit on homepage and key landing pages</div><div class="task-detail">/tm uses Playwright + console to identify load issues.</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Set up UTM tracking links for all campaign URLs</div><div class="task-desc">Create UTM-tagged links for each platform and campaign</div><div class="task-detail">AI can generate the UTM parameters; human creates in Google Campaign URL Builder or HubSpot tracking URLs.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><span class="role-badge pm">PM</span><h3>Project Manager</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Generate full project task list with assignments and deadlines</div><div class="task-desc">Every task, owner, due date for the 8-week campaign</div><div class="task-detail">/pm creates the structured task breakdown. Ready to paste into Teamwork.</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">Create tracking spreadsheet</div><div class="task-desc">Weekly dashboard for all KPIs (leads, calls, signups, engagement)</div><div class="task-detail">/pm uses xlsx skill to generate a formatted spreadsheet.</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Create Teamwork project and import tasks</div><div class="task-desc">Set up project in Teamwork with all task lists, milestones, assignments</div><div class="task-detail">Requires Teamwork UI. AI provides the task list; human imports.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><span class="role-badge ceo">CEO</span><h3>CEO / Jay</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Approve campaign strategy and budget ($8,250)</div><div class="task-desc">Review and green-light the overall plan</div><div class="task-detail">Jay's decision. AI presents the plan; Jay approves.</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Set up paid ad accounts / allocate budget</div><div class="task-desc">LinkedIn Ads + Meta Ads — $2K/mo social + $1K/mo retreat</div><div class="task-detail">Requires ad platform access and payment method.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================ -->
+  <!-- PHASE 1: WEEKLY EXECUTION -->
+  <!-- ================================================ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <h2>Weekly Execution Cycle</h2>
+      <span class="phase-dates">Repeats each week, Feb 10 - Apr 4</span>
+    </div>
+
+    <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">This is the repeating weekly workflow. Each Monday, the AI team preps the week. Each day, the human team executes with AI support.</p>
+
+    <div class="workflow-box">
+      <h3>Monday: Weekly Prep</h3>
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><p><strong>/cm</strong> generates all social posts for the week (finalized copy, hashtags, CTAs)</p><div class="flow-who ai-who">AI Agent</div></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><p><strong>/pm</strong> pulls weekly status: tasks due, budget burn, capacity signals</p><div class="flow-who ai-who">AI Agent</div></div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><p><strong>/am</strong> checks HubSpot for new leads from last week, updates lead scores, flags hot leads</p><div class="flow-who ai-who">AI Agent</div></div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><p>Jay reviews the week's content and approves (5-10 min review)</p><div class="flow-who human-who">Human (Jay)</div></div></div>
+    </div>
+
+    <div class="workflow-box">
+      <h3>Daily: Post + Engage</h3>
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><p>Human CM/AM copies approved post from campaign portal and posts to the platform</p><div class="flow-who human-who">Human — post to LinkedIn / Instagram / Facebook</div></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><p><strong>/am</strong> monitors HubSpot for new form submissions, logs as notes, alerts team to hot leads</p><div class="flow-who ai-who">AI Agent</div></div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><p>Human AM responds to comments, DMs, and engagement on posts</p><div class="flow-who human-who">Human — real-time social engagement</div></div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><p><strong>/am</strong> drafts follow-up emails for new leads via Apple Mail (human reviews before sending)</p><div class="flow-who both-who">AI drafts, human sends</div></div></div>
+    </div>
+
+    <div class="workflow-box">
+      <h3>Email Days (per calendar)</h3>
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><p>HubSpot workflow auto-sends nurture emails to Masterclass signups (Sequence A)</p><div class="flow-who ai-who">Automated — set up in pre-launch</div></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><p>For newsletter sends: <strong>/cm</strong> writes the email, human builds in HubSpot and sends to list</p><div class="flow-who both-who">AI writes copy, human sends in HubSpot</div></div></div>
+    </div>
+
+    <div class="workflow-box">
+      <h3>Friday: Weekly Review</h3>
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><p><strong>/pm</strong> generates weekly performance report (leads, calls, signups, engagement, pipeline)</p><div class="flow-who ai-who">AI Agent — pulls from HubSpot data</div></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><p><strong>/am</strong> reviews new contacts, scores leads, identifies upsell opportunities</p><div class="flow-who ai-who">AI Agent</div></div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><p>Jay reviews weekly report, makes adjustments for next week</p><div class="flow-who human-who">Human (Jay) — 10 min review</div></div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><p><strong>/cm</strong> pre-writes next week's content based on performance data and any adjustments</p><div class="flow-who ai-who">AI Agent</div></div></div>
+    </div>
+  </div>
+
+  <!-- ================================================ -->
+  <!-- PHASE-SPECIFIC TASKS -->
+  <!-- ================================================ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">2</div>
+      <h2>Phase-Specific Tasks</h2>
+      <span class="phase-dates">Special tasks per campaign phase</span>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><h3>Week 1-2: Awareness Phase (Feb 10-21)</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/cm writes full Blog #1 and Blog #2</div><div class="task-desc">Publish-ready drafts with SEO optimization</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Publish blogs to businessbldrs.com</div><div class="task-desc">Upload to CMS with images, meta tags, internal links</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Launch LinkedIn + Meta awareness ads</div><div class="task-desc">Create ad campaigns targeting SMB owners — $2K budget</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/am sends Masterclass promo email to existing database</div><div class="task-desc">Draft email pushing existing contacts to the Masterclass</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><h3>Week 3-4: Consideration Phase (Feb 24 - Mar 7)</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/cm writes full Blog #3: "The Blueprint Approach"</div><div class="task-desc">1,000-word blog post with SEO keywords</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/cm creates case study write-up for Breakwater Construction</div><div class="task-desc">Long-form case study for LinkedIn article</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Record/edit client testimonial clips</div><div class="task-desc">Ameri-Force testimonial video for Facebook (Feb 26)</div></div></div>
+        <div class="task"><span class="task-type both">AI + Human</span><div class="task-info"><div class="task-title">Announce Future Focused Leaders retreat publicly</div><div class="task-desc">AI drafts announcement; human posts to all channels Mar 4</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><h3>Week 5-6: Conversion Phase (Mar 10-21)</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/cm writes Blog #4: "Future-Focused Leadership"</div><div class="task-desc">1,200-word blog post — retreat content teaser</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Create Facebook Event for retreat</div><div class="task-desc">FB Event page with details, ticket link, cover image</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/am sends retreat invitation email to full database</div><div class="task-desc">Campaign email: "Future-Proof Your Business: Join us April 6-8"</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Record Jay speaking clip for LinkedIn video (Mar 14)</div><div class="task-desc">"The future belongs to leaders who embrace AI AND human connection"</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/am identifies and emails hot leads personally</div><div class="task-desc">Score 50+ contacts get personal outreach from Jay via Apple Mail</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Increase ad spend if retreat signups under 30</div><div class="task-desc">Mid-March checkpoint — adjust Meta/LinkedIn budget</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-section">
+      <div class="role-header"><h3>Week 7-8: Final Push (Mar 24 - Apr 4)</h3></div>
+      <div class="task-list">
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/cm writes "last call" urgency content for all platforms</div><div class="task-desc">Final push copy for retreat and discovery call bookings</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/am sends final retreat email to non-registrants</div><div class="task-desc">"Doors close tomorrow" email — April 3</div></div></div>
+        <div class="task"><span class="task-type ai">AI Agent</span><div class="task-info"><div class="task-title">/pm generates full campaign performance report</div><div class="task-desc">8-week report: all KPIs, ROI analysis, pipeline value, lessons learned</div></div></div>
+        <div class="task"><span class="task-type human">Human</span><div class="task-info"><div class="task-title">Post daily countdown content to all platforms</div><div class="task-desc">Final 5 days — daily posts on Instagram Stories, FB, LinkedIn</div></div></div>
+        <div class="task"><span class="task-type both">AI + Human</span><div class="task-info"><div class="task-title">Post-campaign debrief meeting</div><div class="task-desc">/pm provides data and agenda; leadership team reviews and plans next quarter</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================ -->
+  <!-- QUICK COMMAND REFERENCE -->
+  <!-- ================================================ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">!</div>
+      <h2>Quick Command Reference</h2>
+      <span class="phase-dates">How to invoke each agent</span>
+    </div>
+
+    <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">When you're ready to execute, just tell Claude what you need. Here are example prompts for each agent:</p>
+
+    <div class="task-list">
+      <div class="task"><span class="task-type ai" style="background:var(--gold-light);color:#8B7028;">/ CEO</span><div class="task-info"><div class="task-title">"Review the campaign budget and tell me if $8,250 is the right investment"</div><div class="task-desc">"Draft a sales proposal for [prospect] based on our blueprint offering"</div></div></div>
+      <div class="task"><span class="task-type ai" style="background:#DBEAFE;color:#1E40AF;">/ AM</span><div class="task-info"><div class="task-title">"Look up all contacts who signed up for the Masterclass this week"</div><div class="task-desc">"Draft a follow-up email to [contact] about their discovery call" | "Log a note in HubSpot for [company]"</div></div></div>
+      <div class="task"><span class="task-type ai" style="background:#FEF3C7;color:#92400E;">/ PM</span><div class="task-info"><div class="task-title">"Give me this week's campaign status report with all KPIs"</div><div class="task-desc">"Create a task breakdown for the retreat event logistics" | "What's our budget burn rate?"</div></div></div>
+      <div class="task"><span class="task-type ai" style="background:#FCE7F3;color:#9D174D;">/ CM</span><div class="task-info"><div class="task-title">"Write next week's LinkedIn and Instagram posts"</div><div class="task-desc">"Write the full blog post on AI-powered marketing" | "Create a content calendar for March"</div></div></div>
+      <div class="task"><span class="task-type ai" style="background:#D1FAE5;color:#065F46;">/ TM</span><div class="task-info"><div class="task-title">"Check if the /request-quote form is working on businessbldrs.com"</div><div class="task-desc">"Run a performance check on the homepage" | "Verify all tracking pixels are firing"</div></div></div>
+      <div class="task"><span class="task-type ai" style="background:#E0E7FF;color:#3730A3;">/ OPS</span><div class="task-info"><div class="task-title">"What's our team capacity for taking on campaign work this week?"</div><div class="task-desc">"Generate the weekly leadership sync agenda" | "Create a QA checklist for blog publishing"</div></div></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:40px 24px;color:var(--gray-400);font-size:13px;border-top:1px solid var(--gray-200);margin-top:40px;">
+    Business Builders AI Agent Team — Execution Plan<br>
+    Ready to execute: just say "let's start" and the AI team will begin Phase 0 tasks.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future-Proof Your Business — Q1 2026 Campaign</title>
+<style>
+  :root {
+    --gold: #C8A84E;
+    --gold-light: #F5ECD7;
+    --gold-bg: #FBF8F0;
+    --black: #1A1A1A;
+    --dark: #2D2D2D;
+    --gray-900: #111;
+    --gray-800: #333;
+    --gray-600: #666;
+    --gray-400: #999;
+    --gray-200: #E5E5E5;
+    --gray-100: #F5F5F5;
+    --white: #FFFFFF;
+    --linkedin: #0A66C2;
+    --instagram: #E1306C;
+    --facebook: #1877F2;
+    --email-color: #D44638;
+    --green: #22C55E;
+    --yellow: #EAB308;
+    --red: #EF4444;
+    --blue: #3B82F6;
+    --sidebar-w: 260px;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--gray-100);
+    color: var(--gray-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === SIDEBAR === */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    padding: 24px 0;
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-brand {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+  }
+  .sidebar-brand h2 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .sidebar-brand p {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .sidebar nav { flex: 1; padding: 8px 0; }
+  .sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .sidebar nav a:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.05);
+  }
+  .sidebar nav a.active {
+    color: var(--gold);
+    border-left-color: var(--gold);
+    background: rgba(200,168,78,0.08);
+  }
+  .sidebar nav a .nav-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .sidebar nav .nav-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 8px 20px;
+  }
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px;
+    color: var(--gray-400);
+  }
+
+  /* === MAIN === */
+  .main {
+    margin-left: var(--sidebar-w);
+    min-height: 100vh;
+  }
+
+  /* === HERO === */
+  .hero {
+    background: linear-gradient(135deg, var(--black) 0%, #2a2215 100%);
+    color: var(--white);
+    padding: 56px 48px 48px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(200,168,78,0.15);
+    border: 1px solid rgba(200,168,78,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: left;
+  }
+  .hero-stat .num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  .hero-stat .label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* === CONTENT === */
+  .content {
+    padding: 40px 48px 80px;
+    max-width: 1100px;
+  }
+
+  .section {
+    margin-bottom: 48px;
+    scroll-margin-top: 24px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .section-icon {
+    width: 40px; height: 40px;
+    background: var(--black);
+    color: var(--gold);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--black);
+  }
+  .section-header .agent-badge {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 50px;
+    background: var(--gold-light);
+    color: #8B7028;
+    white-space: nowrap;
+  }
+
+  /* === CARDS === */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .card p, .card li {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card ul li { margin-bottom: 4px; }
+
+  /* === TABLES === */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    margin-bottom: 16px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: var(--black);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-800);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--gold-bg); }
+
+  /* === PLATFORM BADGES === */
+  .platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .platform-linkedin { background: #E8F0FE; color: var(--linkedin); }
+  .platform-instagram { background: #FDE8EF; color: var(--instagram); }
+  .platform-facebook { background: #E7F0FF; color: var(--facebook); }
+  .platform-email { background: #FDECEA; color: var(--email-color); }
+  .platform-all { background: var(--gold-light); color: #8B7028; }
+
+  /* === COPY BLOCKS === */
+  .copy-block {
+    position: relative;
+    background: var(--gray-900);
+    color: #E0E0E0;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .copy-block-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+  .copy-btn.copied {
+    background: var(--green) !important;
+    color: var(--white) !important;
+    border-color: var(--green) !important;
+  }
+  .copy-block pre {
+    padding: 16px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  /* === TIMELINE === */
+  .timeline {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+  .timeline-phase {
+    flex: 1;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.2s;
+    border-right: 1px solid var(--gray-200);
+  }
+  .timeline-phase:last-child { border-right: none; }
+  .timeline-phase.awareness { background: #FEF3C7; }
+  .timeline-phase.consideration { background: #DBEAFE; }
+  .timeline-phase.conversion { background: #D1FAE5; }
+  .timeline-phase.final { background: #FDE8EF; }
+  .timeline-phase .phase-weeks {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+  }
+  .timeline-phase .phase-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 4px 0 2px;
+  }
+  .timeline-phase .phase-dates {
+    font-size: 11px;
+    opacity: 0.6;
+  }
+
+  /* === TABS === */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--gray-200);
+    padding-bottom: 0;
+  }
+  .tab {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-400);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .tab:hover { color: var(--gray-800); }
+  .tab.active {
+    color: var(--black);
+    border-bottom-color: var(--gold);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* === GOALS === */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .goal-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+  .goal-card .goal-target {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .goal-card .goal-metric {
+    font-size: 12px;
+    color: var(--gray-600);
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+
+  /* === AUDIENCE TAGS === */
+  .audience-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .audience-tag {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-800);
+  }
+
+  /* === BLOG CARDS === */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .blog-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: box-shadow 0.2s;
+  }
+  .blog-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .blog-card .keyword {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .blog-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .blog-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .blog-card ul li {
+    font-size: 13px;
+    color: var(--gray-600);
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .blog-card ul li:before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .blog-card .word-count {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  /* === SCORING === */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .score-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  .score-item .pts {
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* === BUDGET === */
+  .budget-total {
+    background: linear-gradient(135deg, var(--black), #2a2215);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .budget-total .total-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+  }
+  .budget-total .total-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  .budget-total .roi {
+    text-align: right;
+  }
+  .budget-total .roi-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+  }
+  .budget-total .roi-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--green);
+  }
+
+  /* === NEXT STEPS === */
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px;
+    background: var(--black);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-item .step-text {
+    font-size: 14px;
+    color: var(--gray-800);
+    padding-top: 4px;
+  }
+  .step-item .step-text strong {
+    color: var(--black);
+  }
+
+  /* Workflow list */
+  .workflow-list { display: grid; gap: 12px; }
+  .workflow-item {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .workflow-item h4 { font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .workflow-item p { font-size: 13px; color: var(--gray-600); }
+  .workflow-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .checklist-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .checklist-card h4 { font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+  .checklist-card p { font-size: 13px; color: var(--gray-600); }
+
+  /* === TOAST === */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--black);
+    color: var(--white);
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .hero { padding: 32px 24px; }
+    .hero h1 { font-size: 28px; }
+    .content { padding: 24px; }
+    .goals-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline { flex-direction: column; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .checklist-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <h2>Business Builders</h2>
+    <p>Q1 2026 Campaign Portal</p>
+  </div>
+  <nav>
+    <a href="#strategy" class="active"><span class="nav-icon">&#9670;</span> Strategy</a>
+    <a href="#calendar"><span class="nav-icon">&#128197;</span> Content Calendar</a>
+    <a href="#emails"><span class="nav-icon">&#9993;</span> Email Sequences</a>
+    <a href="#social"><span class="nav-icon">&#128172;</span> Social Copy</a>
+    <a href="#blogs"><span class="nav-icon">&#9997;</span> Blog Outlines</a>
+    <div class="nav-divider"></div>
+    <a href="#hubspot"><span class="nav-icon">&#9881;</span> HubSpot Setup</a>
+    <a href="#tracking"><span class="nav-icon">&#128200;</span> Tracking</a>
+    <a href="#budget"><span class="nav-icon">&#128176;</span> Budget</a>
+    <div class="nav-divider"></div>
+    <a href="#nextsteps"><span class="nav-icon">&#10003;</span> Next Steps</a>
+  </nav>
+  <div class="sidebar-footer">
+    Built by the BB AI Agent Team<br>
+    CEO &middot; CM &middot; AM &middot; TM &middot; PM &middot; OPS
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">&#9733; Q1 2026 Campaign</div>
+    <h1>"Future-Proof <span>Your Business</span>"</h1>
+    <p class="subtitle">Positioning Business Builders as the agency that combines 26 years of proven results with cutting-edge AI to help businesses stop wasting money and start growing.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">150</div><div class="label">Lead Target</div></div>
+      <div class="hero-stat"><div class="num">30</div><div class="label">Calls Booked</div></div>
+      <div class="hero-stat"><div class="num">50</div><div class="label">Retreat Signups</div></div>
+      <div class="hero-stat"><div class="num">$250K</div><div class="label">Pipeline Goal</div></div>
+      <div class="hero-stat"><div class="num">~9x</div><div class="label">Projected ROI</div></div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- STRATEGY -->
+    <section class="section" id="strategy">
+      <div class="section-header">
+        <div class="section-icon">&#9670;</div>
+        <h2>Campaign Strategy</h2>
+        <span class="agent-badge">CEO Agent</span>
+      </div>
+      <div class="card">
+        <h3>Strategic Rationale</h3>
+        <ul>
+          <li>Homepage leads with "AI-Powered Marketing for Businesses" — this campaign amplifies that positioning</li>
+          <li>The <strong>Future Focused Leaders retreat (April 6-8)</strong> is a live anchor event we build the whole campaign around</li>
+          <li>Pipeline shows strong demand for <strong>blueprints</strong> ($9.5K-$30K) and <strong>website projects</strong> ($5K-$20K)</li>
+          <li>The <strong>Marketing Masterclass</strong> (free video series) is an existing lead magnet that's underutilized in outbound</li>
+        </ul>
+      </div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--black)">Campaign Goals</h3>
+      <div class="goals-grid">
+        <div class="goal-card"><div class="goal-target">150</div><div class="goal-metric">New Leads<br>in HubSpot</div></div>
+        <div class="goal-card"><div class="goal-target">30</div><div class="goal-metric">Discovery Calls<br>Booked</div></div>
+        <div class="goal-card"><div class="goal-target">50</div><div class="goal-metric">Retreat<br>Registrations</div></div>
+        <div class="goal-card"><div class="goal-target">200</div><div class="goal-metric">Masterclass<br>Enrollments</div></div>
+        <div class="goal-card"><div class="goal-target">$250K+</div><div class="goal-metric">Pipeline Value<br>Created</div></div>
+      </div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--black)">Target Audiences</h3>
+      <div class="audience-list">
+        <div class="audience-tag">SMB Owners (10-100 employees)</div>
+        <div class="audience-tag">Ministry &amp; Nonprofit Leaders</div>
+        <div class="audience-tag">Existing Clients (Upsell)</div>
+        <div class="audience-tag">AI-Curious Business Leaders</div>
+      </div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--black)">Campaign Timeline</h3>
+      <div class="timeline">
+        <div class="timeline-phase awareness"><div class="phase-weeks">Week 1-2</div><div class="phase-name">Awareness</div><div class="phase-dates">Feb 10-21</div></div>
+        <div class="timeline-phase consideration"><div class="phase-weeks">Week 3-4</div><div class="phase-name">Consideration</div><div class="phase-dates">Feb 24 - Mar 7</div></div>
+        <div class="timeline-phase conversion"><div class="phase-weeks">Week 5-6</div><div class="phase-name">Conversion</div><div class="phase-dates">Mar 10-21</div></div>
+        <div class="timeline-phase final"><div class="phase-weeks">Week 7-8</div><div class="phase-name">Final Push</div><div class="phase-dates">Mar 24 - Apr 4</div></div>
+      </div>
+    </section>
+
+    <!-- CONTENT CALENDAR -->
+    <section class="section" id="calendar">
+      <div class="section-header">
+        <div class="section-icon">&#128197;</div>
+        <h2>Content Calendar</h2>
+        <span class="agent-badge">CM Agent</span>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="week12">Week 1-2: Awareness</button>
+        <button class="tab" data-tab="week34">Week 3-4: Consideration</button>
+        <button class="tab" data-tab="week56">Week 5-6: Conversion</button>
+        <button class="tab" data-tab="week78">Week 7-8: Final Push</button>
+      </div>
+      <div class="tab-content active" id="week12">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Date</th><th>Platform</th><th>Type</th><th>Topic</th><th>CTA</th></tr></thead>
+          <tbody>
+            <tr><td>Feb 10</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Text post</td><td>3 signs your marketing is costing you more than it makes</td><td>Comment your biggest frustration</td></tr>
+            <tr><td>Feb 11</td><td><span class="platform platform-instagram">Instagram</span></td><td>Carousel</td><td>The Marketing Money Pit: 5 ways businesses waste budget</td><td>Save this post</td></tr>
+            <tr><td>Feb 12</td><td><span class="platform platform-facebook">Facebook</span></td><td>Video clip</td><td>60-sec Jay talking head: "Why most marketing doesn't work"</td><td>Link to Masterclass</td></tr>
+            <tr><td>Feb 13</td><td><span class="platform platform-email">Email</span></td><td>Newsletter</td><td>The #1 reason your marketing isn't working</td><td>Download Masterclass</td></tr>
+            <tr><td>Feb 14</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Article</td><td>26 Years of Marketing Lessons: What Actually Works</td><td>Request a quote</td></tr>
+            <tr><td>Feb 17</td><td><span class="platform platform-instagram">Instagram</span></td><td>Reel</td><td>Behind-the-scenes: team working on a client project</td><td>Follow for more</td></tr>
+            <tr><td>Feb 18</td><td><span class="platform platform-facebook">Facebook</span></td><td>Image post</td><td>Client stat: 300% increase in qualified leads</td><td>View case study</td></tr>
+            <tr><td>Feb 19</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Poll</td><td>"What's your biggest marketing challenge?"</td><td>Engagement</td></tr>
+            <tr><td>Feb 20</td><td><span class="platform platform-email">Email</span></td><td>Nurture</td><td>You're not bad at marketing. You just don't have a plan.</td><td>Book a 15-min call</td></tr>
+            <tr><td>Feb 21</td><td><span class="platform platform-instagram">Instagram</span></td><td>Story series</td><td>Day in the life at Business Builders</td><td>DM us</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="tab-content" id="week34">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Date</th><th>Platform</th><th>Type</th><th>Topic</th><th>CTA</th></tr></thead>
+          <tbody>
+            <tr><td>Feb 24</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Case study</td><td>Breakwater Construction: marketing transformation</td><td>View full story</td></tr>
+            <tr><td>Feb 25</td><td><span class="platform platform-instagram">Instagram</span></td><td>Carousel</td><td>Our Proven 3-Step Process: Plan, Produce, Promote</td><td>Save &amp; share</td></tr>
+            <tr><td>Feb 26</td><td><span class="platform platform-facebook">Facebook</span></td><td>Video</td><td>Client testimonial: Ameri-Force brand transformation</td><td>Watch full video</td></tr>
+            <tr><td>Feb 27</td><td><span class="platform platform-email">Email</span></td><td>Newsletter</td><td>How StoryBrand + AI = marketing that actually works</td><td>Book discovery call</td></tr>
+            <tr><td>Feb 28</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Text post</td><td>What a $9,500 messaging blueprint includes</td><td>DM for details</td></tr>
+            <tr><td>Mar 3</td><td><span class="platform platform-instagram">Instagram</span></td><td>Reel</td><td>Before vs. After: client website transformations</td><td>Link in bio</td></tr>
+            <tr><td>Mar 4</td><td><span class="platform platform-facebook">Facebook</span></td><td>Post</td><td>Announce Future Focused Leaders retreat</td><td>Learn more</td></tr>
+            <tr><td>Mar 5</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Article</td><td>AI Won't Replace Your Marketing Team — It'll Supercharge It</td><td>Masterclass signup</td></tr>
+            <tr><td>Mar 6</td><td><span class="platform platform-email">Email</span></td><td>Nurture</td><td>Meet the tool we use to 3x results for our clients</td><td>Request a quote</td></tr>
+            <tr><td>Mar 7</td><td><span class="platform platform-instagram">Instagram</span></td><td>Carousel</td><td>5 Blueprints Every Business Needs</td><td>Link in bio</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="tab-content" id="week56">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Date</th><th>Platform</th><th>Type</th><th>Topic</th><th>CTA</th></tr></thead>
+          <tbody>
+            <tr><td>Mar 10</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Text post</td><td>15 minutes could change your business. Here's how.</td><td>Book your call</td></tr>
+            <tr><td>Mar 11</td><td><span class="platform platform-instagram">Instagram</span></td><td>Carousel</td><td>Future Focused Leaders retreat — full details</td><td>Register now</td></tr>
+            <tr><td>Mar 12</td><td><span class="platform platform-facebook">Facebook</span></td><td>Event</td><td>Create FB event for Future Focused Leaders retreat</td><td>RSVP</td></tr>
+            <tr><td>Mar 13</td><td><span class="platform platform-email">Email</span></td><td>Campaign</td><td>Future-Proof Your Business: Join us April 6-8</td><td>Register</td></tr>
+            <tr><td>Mar 14</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Video</td><td>Jay: "Leaders who embrace AI AND human connection"</td><td>Register for retreat</td></tr>
+            <tr><td>Mar 17</td><td><span class="platform platform-instagram">Instagram</span></td><td>Reel</td><td>Client testimonial: Bozard Ford Lincoln</td><td>Book a call</td></tr>
+            <tr><td>Mar 18</td><td><span class="platform platform-facebook">Facebook</span></td><td>Post</td><td>We've helped 1,000+ businesses grow. Yours next.</td><td>Get a free quote</td></tr>
+            <tr><td>Mar 19</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Case study</td><td>How we helped a law firm launch a website in 30 days</td><td>Request a quote</td></tr>
+            <tr><td>Mar 20</td><td><span class="platform platform-email">Email</span></td><td>Nurture</td><td>3 spots left for free strategy session this month</td><td>Book now</td></tr>
+            <tr><td>Mar 21</td><td><span class="platform platform-instagram">Instagram</span></td><td>Story</td><td>Countdown: Future Focused Leaders — 3 weeks away</td><td>Swipe up</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="tab-content" id="week78">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Date</th><th>Platform</th><th>Type</th><th>Topic</th><th>CTA</th></tr></thead>
+          <tbody>
+            <tr><td>Mar 24</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Text post</td><td>The businesses that thrive in 2026 moved first.</td><td>Book a call</td></tr>
+            <tr><td>Mar 25</td><td><span class="platform platform-instagram">Instagram</span></td><td>Carousel</td><td>Your first 90 days with Business Builders</td><td>Link in bio</td></tr>
+            <tr><td>Mar 26</td><td><span class="platform platform-facebook">Facebook</span></td><td>Video</td><td>Future Focused Leaders — behind-the-scenes prep</td><td>Last chance to register</td></tr>
+            <tr><td>Mar 27</td><td><span class="platform platform-email">Email</span></td><td>Campaign</td><td>Last call: Future Focused Leaders retreat</td><td>Register today</td></tr>
+            <tr><td>Mar 28</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Article</td><td>The AI Blueprint: How Smart Businesses Use AI Now</td><td>Request AI Blueprint</td></tr>
+            <tr><td>Mar 31</td><td><span class="platform platform-instagram">Instagram</span></td><td>Reel</td><td>3 things you can do TODAY to improve your marketing</td><td>Follow for more</td></tr>
+            <tr><td>Apr 1</td><td><span class="platform platform-facebook">Facebook</span></td><td>Post</td><td>Q1 2026 in review — businesses we helped grow</td><td>Get your free quote</td></tr>
+            <tr><td>Apr 2</td><td><span class="platform platform-linkedin">LinkedIn</span></td><td>Post</td><td>See you in 4 days — retreat hype</td><td>Register</td></tr>
+            <tr><td>Apr 3</td><td><span class="platform platform-email">Email</span></td><td>Final push</td><td>Doors close tomorrow — Future Focused Leaders</td><td>Register</td></tr>
+            <tr><td>Apr 4</td><td><span class="platform platform-all">All Platforms</span></td><td>Stories/posts</td><td>This weekend. Are you in?</td><td>Final CTA</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- EMAILS -->
+    <section class="section" id="emails">
+      <div class="section-header">
+        <div class="section-icon">&#9993;</div>
+        <h2>Email Sequences</h2>
+        <span class="agent-badge">CM Agent</span>
+      </div>
+      <div class="card" style="margin-bottom:24px">
+        <h3>Sequence A: Cold Lead Nurture</h3>
+        <p>Triggered when new contacts sign up for the Marketing Masterclass. 4-email sequence over 14 days.</p>
+      </div>
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Email 1 — Immediate (auto-send on signup)</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Subject: Your Marketing Masterclass is ready
+Preview: Start watching now — no strings attached
+
+Hi [First Name],
+
+Your Marketing Masterclass access is live. Here's what you'll learn:
+
+- How to target the RIGHT audience (not everyone)
+- How to clarify your message so customers actually listen
+- How to build a marketing plan that delivers real ROI
+
+[WATCH NOW button]
+
+This is the same framework we've used to help 1,000+ businesses
+grow over the past 26 years.
+
+Enjoy the series,
+Jay Owen
+CEO, Business Builders
+
+P.S. If you want to skip ahead and talk strategy, grab a free
+15-minute call with our team: [BOOK A CALL link]</pre></div>
+
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Email 2 — Day 3</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Subject: The #1 mistake businesses make with marketing
+Preview: It's not what you think
+
+Hi [First Name],
+
+After 26 years and 1,000+ clients, I can tell you the #1 reason
+marketing fails:
+
+It's not bad tactics. It's unclear messaging.
+
+When your customer can't understand what you do and why it matters
+to THEM, nothing else works — not your website, not your ads,
+not your social media.
+
+That's why we start every engagement with a Messaging Blueprint.
+It's the foundation everything else is built on.
+
+Curious what that looks like for your business?
+
+[BOOK A FREE 15-MIN CALL button]
+
+Jay Owen
+CEO, Business Builders</pre></div>
+
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Email 3 — Day 7</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Subject: How Evans Automotive increased leads by 300%
+Preview: A real story from a real business
+
+Hi [First Name],
+
+Evans Automotive was spending money on marketing and getting nowhere.
+Sound familiar?
+
+Here's what changed:
+1. We clarified their message using the StoryBrand framework
+2. We rebuilt their website to convert visitors into leads
+3. We launched targeted campaigns to reach their ideal customers
+
+The result? 300% increase in qualified leads.
+
+This isn't magic. It's a proven process — and it works across
+industries (healthcare, construction, legal, nonprofits, you name it).
+
+Want to see what it could look like for [Company Name]?
+
+[GET YOUR FREE QUOTE button]
+
+Jay Owen
+CEO, Business Builders</pre></div>
+
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Email 4 — Day 14</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Subject: Join me April 6-8 for something different
+Preview: A retreat for leaders who want to future-proof their business
+
+Hi [First Name],
+
+I'm hosting a two-day retreat called Future Focused Leaders on
+April 6-8 for business leaders who want to:
+
+- Integrate AI into their business (practically, not theoretically)
+- Strengthen their teams
+- Deepen authentic human connection in a digital world
+
+It's intimate, actionable, and unlike any conference you've been to.
+
+[LEARN MORE &amp; REGISTER button]
+
+Space is limited. I'd love to see you there.
+
+Jay Owen
+CEO, Business Builders</pre></div>
+
+      <div class="card" style="margin-top:32px;margin-bottom:24px">
+        <h3>Sequence B: Retreat Registrant Follow-Up</h3>
+        <p>Triggered on retreat registration. 3-email sequence leading up to the event.</p>
+      </div>
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Retreat Confirmation — Immediate</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Subject: You're in! Future Focused Leaders — April 6-8
+Preview: Here's what to expect
+
+[Confirmation details, logistics, what to prepare]</pre></div>
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Retreat Prep — 2 weeks before</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Subject: 2 weeks out — here's how to get the most from the retreat
+Preview: A quick prep guide
+
+[Pre-work, what to bring, mindset to arrive with]</pre></div>
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Retreat Final — 3 days before</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Subject: See you Sunday — final details
+Preview: Logistics, parking, and one thing to think about
+
+[Final logistics + a thought-provoking question to arrive with]</pre></div>
+    </section>
+
+    <!-- SOCIAL COPY -->
+    <section class="section" id="social">
+      <div class="section-header">
+        <div class="section-icon">&#128172;</div>
+        <h2>Social Media Copy — Ready to Post</h2>
+        <span class="agent-badge">CM Agent</span>
+      </div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;color:var(--black)"><span class="platform platform-linkedin" style="font-size:13px">LinkedIn</span> Posts</h3>
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">LinkedIn #1: Problem Awareness</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>3 signs your marketing is costing you more than it makes:
+
+1. You can't clearly explain what you do in one sentence
+2. Your website gets traffic but no one fills out a form
+3. You've tried "everything" but nothing sticks
+
+Here's the truth most agencies won't tell you:
+
+The problem isn't your budget.
+The problem isn't your tactics.
+The problem is your message.
+
+When your customer doesn't understand what you do and why it
+matters to THEM — no amount of ad spend will fix it.
+
+After 26 years and 1,000+ clients, we've learned that clear
+messaging is the foundation everything else is built on.
+
+That's why we start every engagement with a Messaging Blueprint
+before we touch a single ad or webpage.
+
+What's the biggest marketing challenge you're facing right now?
+Drop it in the comments — I read every one.
+
+#Marketing #StoryBrand #BusinessGrowth #SmallBusiness</pre></div>
+
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">LinkedIn #2: Authority / Case Study</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>We helped a construction company go from "best kept secret"
+to the go-to name in their market.
+
+Breakwater Construction had the skills, the reputation, and
+the track record. But their marketing didn't reflect any of it.
+
+Here's what we did:
+
+→ Clarified their message with StoryBrand
+→ Built a website that actually converts
+→ Launched targeted campaigns to reach decision-makers
+
+The result? A complete marketing transformation.
+
+This is what happens when you stop guessing and start
+following a proven process.
+
+26+ years. 1,000+ businesses. One framework that works.
+
+If your marketing isn't matching your quality of work,
+let's talk.
+
+#CaseStudy #DigitalMarketing #Construction #BusinessBuilders</pre></div>
+
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">LinkedIn #3: AI + Human Connection</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>AI won't replace your marketing team.
+
+But a marketing team using AI will replace one that isn't.
+
+Here's what we're seeing in 2026:
+
+→ AI-powered strategy that finds your ideal customer faster
+→ Content creation at 3x the speed without losing quality
+→ Data analysis that spots opportunities humans miss
+→ More time for the human work: relationships, creativity, trust
+
+The businesses winning right now aren't choosing between
+AI and human connection.
+
+They're combining both.
+
+That's exactly what we're exploring at our Future Focused
+Leaders retreat on April 6-8.
+
+2 days. Real strategies. No fluff.
+
+Link in comments if you want to join us.
+
+#AI #Leadership #FutureOfWork #Marketing</pre></div>
+
+      <h3 style="font-size:15px;font-weight:700;margin:32px 0 16px;color:var(--black)"><span class="platform platform-instagram" style="font-size:13px">Instagram</span> Captions</h3>
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">IG Carousel: "The Marketing Money Pit"</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>STOP. Before you spend another dollar on marketing, read this.
+
+Slide 1: "Is your marketing a money pit?"
+Slide 2: "Sign #1: You can't measure what's working"
+Slide 3: "Sign #2: Your message sounds like everyone else's"
+Slide 4: "Sign #3: Leads come in but never convert"
+Slide 5: "Sign #4: You're doing 'a little of everything'"
+Slide 6: "Sign #5: Your competitors are pulling ahead"
+Slide 7: "The fix? A clear message + a proven plan."
+Slide 8: "Book a free 15-min discovery call — link in bio"
+
+Caption:
+We've seen it hundreds of times over 26 years. Good businesses
+wasting good money on marketing that doesn't work.
+
+The fix isn't more tactics. It's a clear message and a proven plan.
+
+That's exactly what our 3-step process delivers:
+Plan — Get the right strategy
+Produce — Create the right content
+Promote — Reach the right audience
+
+Tired of guessing? Link in bio for a free 15-minute discovery call.
+
+#MarketingTips #SmallBusinessMarketing #StoryBrand
+#BusinessGrowth #MarketingStrategy #StAugustine
+#DigitalMarketing #BusinessBuilders #AI #MarketingAgency</pre></div>
+
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">IG Reel: Client Transformation</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>Before Business Builders → After Business Builders
+
+Swipe to see the transformation.
+
+3 website redesigns. 3 businesses that stopped blending
+in and started standing out.
+
+Every project starts with a Messaging Blueprint — because
+a pretty website without a clear message is just decoration.
+
+Want to see what your transformation could look like?
+Link in bio for a free quote.
+
+#WebDesign #BusinessTransformation #BeforeAndAfter
+#WebsiteDesign #MarketingAgency #StoryBrand #Results</pre></div>
+
+      <h3 style="font-size:15px;font-weight:700;margin:32px 0 16px;color:var(--black)"><span class="platform platform-facebook" style="font-size:13px">Facebook</span> Posts</h3>
+      <div class="copy-block"><div class="copy-block-header"><span class="copy-block-title">Facebook: Testimonial + Social Proof</span><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+<pre>"They helped us clarify our message and 3x our leads."
+
+That's not a marketing promise. That's a real result from
+a real client.
+
+Here's what makes Business Builders different:
+
+We start with strategy, not tactics
+We use the StoryBrand framework to clarify your message
+We combine AI-powered tools with 26 years of experience
+We measure everything so you know what's working
+
+Over 1,000 businesses. 26+ years. 5-star rated.
+
+Stop wasting money on marketing that doesn't work.
+
+Book a free 15-minute discovery call:
+businessbldrs.com/request-quote</pre></div>
+    </section>
+
+    <!-- BLOGS -->
+    <section class="section" id="blogs">
+      <div class="section-header">
+        <div class="section-icon">&#9997;</div>
+        <h2>Blog Post Outlines</h2>
+        <span class="agent-badge">CM Agent</span>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="keyword">marketing not working</div>
+          <h4>Why Your Marketing Isn't Working (And the One Thing That Will Fix It)</h4>
+          <ul>
+            <li>Frustration of spending with no results</li>
+            <li>The real problem: unclear messaging</li>
+            <li>What StoryBrand changes</li>
+            <li>The 3-step process</li>
+            <li>Case study: Evans Automotive 300%</li>
+            <li>CTA: Book a discovery call</li>
+          </ul>
+          <div class="word-count">Target: 1,200 words</div>
+        </div>
+        <div class="blog-card">
+          <div class="keyword">AI marketing for small business</div>
+          <h4>AI-Powered Marketing: What It Actually Means for Your Business in 2026</h4>
+          <ul>
+            <li>AI hype vs. reality</li>
+            <li>5 practical ways AI improves marketing</li>
+            <li>How BB uses AI</li>
+            <li>The human element AI can't replace</li>
+            <li>CTA: Request an AI Blueprint</li>
+          </ul>
+          <div class="word-count">Target: 1,500 words</div>
+        </div>
+        <div class="blog-card">
+          <div class="keyword">marketing blueprint strategy</div>
+          <h4>The Blueprint Approach: Why Strategy Comes Before Tactics</h4>
+          <ul>
+            <li>Jumping to tactics is why it fails</li>
+            <li>The 5 blueprints explained</li>
+            <li>What each includes and costs</li>
+            <li>Blueprints as the foundation</li>
+            <li>CTA: Discuss your blueprint</li>
+          </ul>
+          <div class="word-count">Target: 1,000 words</div>
+        </div>
+        <div class="blog-card">
+          <div class="keyword">AI leadership business</div>
+          <h4>Future-Focused Leadership: How to Integrate AI Without Losing Your Team</h4>
+          <ul>
+            <li>The fear vs. the opportunity</li>
+            <li>Jay's perspective on change</li>
+            <li>Practical AI adoption framework</li>
+            <li>Preview: FFL retreat content</li>
+            <li>CTA: Register for the retreat</li>
+          </ul>
+          <div class="word-count">Target: 1,200 words</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HUBSPOT -->
+    <section class="section" id="hubspot">
+      <div class="section-header">
+        <div class="section-icon">&#9881;</div>
+        <h2>HubSpot Automation Setup</h2>
+        <span class="agent-badge">AM Agent</span>
+      </div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;color:var(--black)">Workflows to Create</h3>
+      <div class="workflow-list">
+        <div class="workflow-item"><h4><span class="workflow-num">1</span> Masterclass Lead Nurture</h4><p>Trigger: Masterclass form submission &rarr; Send Sequence A emails on Days 0, 3, 7, 14</p></div>
+        <div class="workflow-item"><h4><span class="workflow-num">2</span> Retreat Registration Confirmation</h4><p>Trigger: Retreat registration &rarr; Send Sequence B emails (confirmation, 2-week prep, 3-day final)</p></div>
+        <div class="workflow-item"><h4><span class="workflow-num">3</span> Discovery Call Follow-Up</h4><p>Trigger: Quote request form &rarr; Assign to owner &rarr; Auto-create deal in pipeline &rarr; Send confirmation</p></div>
+        <div class="workflow-item"><h4><span class="workflow-num">4</span> Re-engagement</h4><p>Trigger: Contact hasn't opened email in 60 days &rarr; Send "We miss you" email with Masterclass link</p></div>
+      </div>
+      <h3 style="font-size:15px;font-weight:700;margin:32px 0 16px;color:var(--black)">Lead Scoring Updates</h3>
+      <div class="score-grid">
+        <div class="score-item"><span>Masterclass signup</span><span class="pts">+10</span></div>
+        <div class="score-item"><span>Blog visit (2+ pages)</span><span class="pts">+5</span></div>
+        <div class="score-item"><span>Quote request</span><span class="pts">+25</span></div>
+        <div class="score-item"><span>Retreat registration</span><span class="pts">+30</span></div>
+        <div class="score-item"><span>Email open</span><span class="pts">+2</span></div>
+        <div class="score-item"><span>Email click</span><span class="pts">+5</span></div>
+      </div>
+      <h3 style="font-size:15px;font-weight:700;margin:32px 0 16px;color:var(--black)">Lists to Create</h3>
+      <div class="checklist-grid">
+        <div class="checklist-card"><h4>Q1 2026 Campaign Leads</h4><p>All contacts created from campaign sources</p></div>
+        <div class="checklist-card"><h4>Retreat Registrants</h4><p>Future Focused Leaders signups</p></div>
+        <div class="checklist-card"><h4>Masterclass Completers</h4><p>Contacts who finished the video series</p></div>
+        <div class="checklist-card"><h4>Hot Leads</h4><p>Score 50+ and no deal created yet</p></div>
+      </div>
+    </section>
+
+    <!-- TRACKING -->
+    <section class="section" id="tracking">
+      <div class="section-header">
+        <div class="section-icon">&#128200;</div>
+        <h2>Performance Tracking</h2>
+        <span class="agent-badge">PM Agent</span>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Metric</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th><th>Wk 5</th><th>Wk 6</th><th>Wk 7</th><th>Wk 8</th></tr></thead>
+        <tbody>
+          <tr><td><strong>New contacts</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Masterclass signups</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Discovery calls booked</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Retreat registrations</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Social engagement rate</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Email open rate</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Email click rate</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Pipeline value added</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <h3 style="font-size:15px;font-weight:700;margin:24px 0 16px;color:var(--black)">Monthly Review Checkpoints</h3>
+      <div class="card">
+        <ul>
+          <li><strong>End of Feb:</strong> Are we on pace for 150 leads? Adjust awareness content if needed.</li>
+          <li><strong>Mid-March:</strong> Are retreat signups tracking? Increase ad spend if under 30 registrations.</li>
+          <li><strong>End of March:</strong> Final conversion push — retarget engaged non-converters.</li>
+          <li><strong>Post-Campaign (April 10):</strong> Full debrief, ROI analysis, lessons learned.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="section" id="budget">
+      <div class="section-header">
+        <div class="section-icon">&#128176;</div>
+        <h2>Budget Recommendation</h2>
+        <span class="agent-badge">CEO Agent</span>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Line Item</th><th>Monthly</th><th>Campaign Total (8 wks)</th></tr></thead>
+        <tbody>
+          <tr><td>Paid social (LinkedIn + Meta)</td><td>$2,000</td><td>$4,000</td></tr>
+          <tr><td>Email platform (existing HubSpot)</td><td>$0</td><td>$0</td></tr>
+          <tr><td>Content creation (internal team)</td><td>$0</td><td>$0</td></tr>
+          <tr><td>Video production (testimonial clips)</td><td>$1,500</td><td>$1,500</td></tr>
+          <tr><td>Retreat promotion (targeted ads)</td><td>$1,000</td><td>$2,000</td></tr>
+          <tr><td>Contingency (10%)</td><td>—</td><td>$750</td></tr>
+        </tbody>
+      </table></div>
+      <div class="budget-total">
+        <div><div class="total-label">Campaign Investment</div><div class="total-num">$8,250</div></div>
+        <div class="roi"><div class="roi-label">Projected ROI</div><div class="roi-num">~9x Return</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">$250K pipeline x 30% close = $75K revenue</div></div>
+      </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section class="section" id="nextsteps">
+      <div class="section-header">
+        <div class="section-icon">&#10003;</div>
+        <h2>Next Steps</h2>
+        <span class="agent-badge">All Agents</span>
+      </div>
+      <div class="card">
+        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Jay approves</strong> campaign strategy and budget</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>CM</strong> begins producing Week 1-2 content (first 10 posts + Email 1)</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>AM</strong> sets up HubSpot workflows and lead scoring</div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>TM</strong> verifies all landing page links, forms, and tracking pixels work</div></div>
+        <div class="step-item"><div class="step-num">5</div><div class="step-text"><strong>PM</strong> creates Teamwork project with all tasks, deadlines, and assignments</div></div>
+        <div class="step-item"><div class="step-num">6</div><div class="step-text"><strong>Campaign launches February 10, 2026</strong></div></div>
+      </div>
+      <div style="margin-top:32px;text-align:center;padding:24px;color:var(--gray-400);font-size:13px">
+        Built collaboratively by the Business Builders AI Agent Team<br>
+        CEO: Strategy &middot; CM: Content &middot; AM: CRM Intel &middot; TM: Site Audit &middot; PM: Tracking &middot; OPS: Coordination
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script>
+function copyBlock(btn) {
+  var pre = btn.closest('.copy-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.textContent).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    showToast('Copied to clipboard');
+    setTimeout(function() {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+
+document.querySelectorAll('.tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    var group = tab.closest('.section');
+    group.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+    group.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+var sections = document.querySelectorAll('.section');
+var navLinks = document.querySelectorAll('.sidebar nav a');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      navLinks.forEach(function(link) { link.classList.remove('active'); });
+      var active = document.querySelector('.sidebar nav a[href="#' + entry.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(function(s) { observer.observe(s); });
+</script>
+
+</body>
+</html>
