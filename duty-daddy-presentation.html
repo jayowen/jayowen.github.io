@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doody Daddy - Growth Partnership | Business Builders</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f1419;
+  --ink-light: #3a4550;
+  --ink-muted: #6b7a88;
+  --surface: #f8f6f3;
+  --card: #ffffff;
+  --border: #e2ddd5;
+  --accent: #f37321;
+  --accent-light: #fef0e4;
+  --accent-dark: #c75c14;
+  --red: #c23b22;
+  --blue: #2b6cb0;
+  --green: #2d7a4f;
+  --green-bg: #edf7f1;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-size: 16px; }
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- DECK CONTAINER ---- */
+.deck {
+  display: flex;
+  height: 100vh;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- SLIDES ---- */
+.slide {
+  min-width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 80px;
+  position: relative;
+  overflow-y: auto;
+}
+.slide__inner {
+  max-width: 960px;
+  width: 100%;
+}
+
+.slide--dark {
+  background: linear-gradient(135deg, var(--ink) 0%, #1a2634 100%);
+  color: #fff;
+}
+.slide--light {
+  background: var(--surface);
+  color: var(--ink);
+}
+.slide--white {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* ---- TYPOGRAPHY ---- */
+.slide h1 {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+.slide h2 {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.slide p {
+  font-size: 20px;
+  line-height: 1.7;
+  max-width: 720px;
+}
+.slide--dark p { color: rgba(255,255,255,0.7); }
+.slide--dark p strong { color: #fff; }
+.slide--light p { color: var(--ink-light); }
+.slide--light p strong { color: var(--ink); }
+.slide--white p { color: var(--ink-light); }
+.slide--white p strong { color: var(--ink); }
+
+.label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+.slide--dark .label { color: var(--accent); }
+.slide--light .label { color: var(--accent-dark); }
+.slide--white .label { color: var(--accent-dark); }
+
+/* ---- NAV CONTROLS ---- */
+.nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
+  background: rgba(15, 20, 25, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.nav__btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  font-size: 18px;
+}
+.nav__btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+}
+.nav__btn:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+.nav__btn:disabled:hover {
+  background: none;
+  border-color: rgba(255,255,255,0.15);
+}
+.nav__center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.nav__dot.active {
+  background: var(--accent);
+  width: 24px;
+  border-radius: 4px;
+}
+.nav__counter {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.08em;
+  margin-left: 16px;
+}
+
+/* ---- STAT GRID ---- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.stat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+}
+.stat-card__value {
+  font-family: var(--serif);
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-card__value.bad { color: var(--red); }
+.stat-card__value.good { color: var(--green); }
+.stat-card__value.neutral { color: var(--accent); }
+.stat-card__label {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+.stat-card__sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 4px;
+}
+.stat-card--light {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+.stat-card--light .stat-card__label { color: var(--ink-muted); }
+.stat-card--light .stat-card__sub { color: var(--ink-muted); opacity: 0.6; }
+.stat-card--light .stat-card__value.good { color: var(--green); }
+
+/* ---- BIG LIST ---- */
+.big-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+}
+.big-list li {
+  font-size: 22px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.big-list li:last-child { border-bottom: none; }
+.big-list__num {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--accent);
+  min-width: 28px;
+}
+.big-list__text { flex: 1; }
+.slide--dark .big-list__text { color: rgba(255,255,255,0.8); }
+.slide--dark .big-list__text strong { color: #fff; }
+
+/* ---- QUARTER BLOCKS ---- */
+.quarter-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.quarter-block {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.quarter-block::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+}
+.quarter-block:nth-child(1)::before { background: var(--red); }
+.quarter-block:nth-child(2)::before { background: var(--accent); }
+.quarter-block:nth-child(3)::before { background: var(--blue); }
+.quarter-block:nth-child(4)::before { background: var(--green); }
+.quarter-block__q {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+.quarter-block__title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.quarter-block ul {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.quarter-block li {
+  font-size: 14px;
+  color: var(--ink-light);
+  padding: 5px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.quarter-block li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+/* ---- INVEST TABLE ---- */
+.invest-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 32px;
+  font-size: 18px;
+}
+.invest-table td {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.invest-table td:last-child {
+  text-align: right;
+  font-family: var(--mono);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.invest-table tr:last-child td { border-bottom: none; }
+.invest-table .total-row td {
+  border-top: 2px solid var(--ink);
+  border-bottom: none;
+  padding-top: 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.invest-table .total-row td:last-child { color: var(--accent); font-size: 28px; }
+.invest-table .sub {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+/* ---- LOGO ROW ---- */
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 56px;
+}
+.logo-row__dd {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+}
+.logo-row__dd img {
+  height: 56px;
+}
+.logo-row .divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.15);
+}
+.logo-row .bb-text {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.logo-row .bb-text span { color: var(--accent); }
+
+/* ---- PRICING TIERS ---- */
+.tier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.18fr 1fr;
+  gap: 0;
+  margin-top: 36px;
+  align-items: stretch;
+}
+.tier-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 28px 24px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+}
+.tier-card:first-child { border-radius: 12px 0 0 12px; border-right: none; }
+.tier-card:last-child { border-radius: 0 12px 12px 0; border-left: none; }
+.tier-card--hero {
+  background: rgba(255,255,255,0.06);
+  border-color: var(--accent);
+  border-width: 2px;
+  border-radius: 12px;
+  z-index: 2;
+  padding: 32px 28px 28px;
+  box-shadow: 0 8px 32px rgba(243,115,33,0.15);
+}
+.tier-card__badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.tier-card__name {
+  font-family: var(--serif);
+  font-size: 22px;
+  margin-bottom: 4px;
+  color: #fff;
+}
+.tier-card--hero .tier-card__name { font-size: 26px; }
+.tier-card__price {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--accent);
+}
+.tier-card--hero .tier-card__price { font-size: 34px; }
+.tier-card__price span { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.4); }
+.tier-card__sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 20px;
+}
+.tier-card__section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 16px;
+  margin-bottom: 6px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.tier-card__section-label:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.tier-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tier-card__list li {
+  font-size: 12px;
+  padding: 3px 0;
+  padding-left: 20px;
+  position: relative;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+}
+.tier-card__list li .chk {
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 13px;
+}
+.tier-card__ref {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.tier-card__footer-note {
+  margin-top: auto;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.tier-card__pick {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.tier-card__pick-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 8px 24px;
+  border-radius: 6px;
+}
+.tier-card__pick-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 6px;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .slide { padding: 40px 32px 80px; }
+  .slide h1 { font-size: 36px; }
+  .slide h2 { font-size: 30px; }
+  .slide p { font-size: 17px; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .quarter-row { grid-template-columns: repeat(2, 1fr); }
+  .stat-card__value { font-size: 36px; }
+  .big-list li { font-size: 18px; }
+}
+@media (max-width: 520px) {
+  .slide { padding: 32px 20px 80px; }
+  .stat-grid, .quarter-row { grid-template-columns: 1fr; }
+  .logo-row { flex-direction: column; gap: 20px; }
+  .logo-row .divider { width: 48px; height: 1px; }
+}
+
+/* ---- PRINT ---- */
+@media print {
+  html, body { height: auto; overflow: visible; }
+  .deck { display: block; transform: none !important; }
+  .slide { min-width: auto; height: auto; page-break-after: always; padding: 40px 30px; }
+  .slide:last-child { page-break-after: avoid; }
+  .nav { display: none; }
+  .slide--dark { background: #1a1a1a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====== SLIDE DECK ====== -->
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: TITLE -->
+  <div class="slide slide--dark">
+    <div class="slide__inner" style="text-align:center;">
+      <div class="logo-row">
+        <div class="logo-row__dd">
+          <img src="https://doodydaddy.com/wp-content/uploads/2017/05/cropped-doody-logo.png" alt="Doody Daddy">
+        </div>
+        <div class="divider"></div>
+        <div class="bb-text">Business <span>Builders</span></div>
+      </div>
+      <h1>12-Month Growth Plan</h1>
+      <p style="margin: 0 auto; text-align:center; color: rgba(255,255,255,0.4);">April 2026</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: THE PROBLEM -->
+  <div class="slide slide--dark">
+    <div class="slide__inner">
+      <span class="label">The Problem</span>
+      <h2>Growth stalled while the<br>competition multiplied.</h2>
+      <p>Doody Daddy has 10 years and 9 crews on the road. But growth dropped from <strong>15% to 5%</strong>, twelve new competitors have entered NE Florida, and the entire marketing budget is <strong>$500/month on Google Ads</strong>. There's no CRM, no email list, and no separation between commercial and residential marketing.</p>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-card__value bad">5%</div>
+          <div class="stat-card__label">Growth Rate</div>
+          <div class="stat-card__sub">Down from 15%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value bad">$500</div>
+          <div class="stat-card__label">Monthly Ad Spend</div>
+          <div class="stat-card__sub">Google Ads only</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value bad">0</div>
+          <div class="stat-card__label">Email Subscribers</div>
+          <div class="stat-card__sub">No list, no CRM</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value neutral">12+</div>
+          <div class="stat-card__label">New Competitors</div>
+          <div class="stat-card__sub">Since 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: THE SOLUTION -->
+  <div class="slide slide--dark">
+    <div class="slide__inner">
+      <span class="label">The Solution</span>
+      <h2>Three moves to take back<br>the market.</h2>
+      <ul class="big-list">
+        <li>
+          <span class="big-list__num">01</span>
+          <span class="big-list__text"><strong>Split commercial and residential marketing.</strong> Two different buyers need two different messages, ads, and landing pages. Commercial is the high-margin growth lever.</span>
+        </li>
+        <li>
+          <span class="big-list__num">02</span>
+          <span class="big-list__text"><strong>Build a referral engine from existing customers.</strong> 9 crews on the road means hundreds of happy customers. A structured referral program turns every satisfied client into a lead source you don't pay for.</span>
+        </li>
+        <li>
+          <span class="big-list__num">03</span>
+          <span class="big-list__text"><strong>Use the 10th anniversary as a launchpad.</strong> Every competitor is new. Doody Daddy has been here since day one. That story is worth telling loudly.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: THE PLAN -->
+  <div class="slide slide--light">
+    <div class="slide__inner">
+      <span class="label">The Plan</span>
+      <h2>12 months. Four phases.</h2>
+      <p>Each quarter builds on the last. Fix the foundation, launch the anniversary, expand commercial, then scale what works.</p>
+      <div class="quarter-row">
+        <div class="quarter-block">
+          <div class="quarter-block__q">Q1 - Months 1-3</div>
+          <div class="quarter-block__title">Foundation & Fix</div>
+          <ul>
+            <li><strong style="color:var(--accent);">Add-ons: Google Ads + Lead Gen</strong></li>
+            <li>StoryBrand messaging</li>
+            <li>HubSpot CRM setup</li>
+            <li>Custom Website Redesign and Optimization</li>
+            <li>SEO foundations</li>
+            <li>Google Ads restructure (comm/res split)</li>
+            <li>Referral program + email list building</li>
+            <li>Service area pages</li>
+          </ul>
+        </div>
+        <div class="quarter-block">
+          <div class="quarter-block__q">Q2 - Months 4-6</div>
+          <div class="quarter-block__title">Anniversary Push</div>
+          <ul>
+            <li><strong style="color:var(--accent);">Add-ons: Google Ads + Meta Ads</strong></li>
+            <li>10th anniversary campaign</li>
+            <li>Founder story video</li>
+            <li>"10 Years, 10 Deals" promos</li>
+            <li>Facebook & Instagram ads live</li>
+            <li>Content engine launch</li>
+            <li>Referral program</li>
+          </ul>
+        </div>
+        <div class="quarter-block">
+          <div class="quarter-block__q">Q3 - Months 7-9</div>
+          <div class="quarter-block__title">Commercial Expansion</div>
+          <ul>
+            <li><strong style="color:var(--accent);">Add-ons: Google Ads + Landing Pages</strong></li>
+            <li>Dedicated commercial landing pages</li>
+            <li>Property manager outreach</li>
+            <li>HOA board presentations</li>
+            <li>Realtor & vet partnerships</li>
+            <li>Full SEO acceleration</li>
+            <li>Email maturity</li>
+          </ul>
+        </div>
+        <div class="quarter-block">
+          <div class="quarter-block__q">Q4 - Months 10-12</div>
+          <div class="quarter-block__title">Optimize & Scale</div>
+          <ul>
+            <li><strong style="color:var(--accent);">Add-ons: Google Ads + Content 2x</strong></li>
+            <li>Full performance audit</li>
+            <li>Double content output</li>
+            <li>Scale winning channels</li>
+            <li>Cut what's not working</li>
+            <li>Spring cleanup campaign</li>
+            <li>Year 2 planning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: EXPECTED OUTCOMES -->
+  <div class="slide slide--white">
+    <div class="slide__inner">
+      <span class="label">Expected Outcomes</span>
+      <h2>Where we're headed in 12 months.</h2>
+      <p>These are the targets we'll track on every monthly call and deep-dive on quarterly reviews. No vanity metrics - every number ties to revenue.</p>
+      <div class="stat-grid" style="margin-top:40px;">
+        <div class="stat-card stat-card--light">
+          <div class="stat-card__value good">60+</div>
+          <div class="stat-card__label">Leads per Month</div>
+          <div class="stat-card__sub">Commercial + residential</div>
+        </div>
+        <div class="stat-card stat-card--light">
+          <div class="stat-card__value good">20+</div>
+          <div class="stat-card__label">New Commercial Accounts</div>
+          <div class="stat-card__sub">Higher margins, longer contracts</div>
+        </div>
+        <div class="stat-card stat-card--light">
+          <div class="stat-card__value good">7,000+</div>
+          <div class="stat-card__label">Email Subscribers</div>
+          <div class="stat-card__sub">From zero today</div>
+        </div>
+        <div class="stat-card stat-card--light">
+          <div class="stat-card__value good">12-15%</div>
+          <div class="stat-card__label">Growth Rate</div>
+          <div class="stat-card__sub">Back to pre-2020 levels</div>
+        </div>
+      </div>
+      <p style="margin-top: 32px; font-size: 17px;"><strong>The breakeven math:</strong> If the average commercial contract is $500-1,000/month, <strong>10-20 new commercial accounts covers the entire annual investment</strong>. Every account beyond that is profit. You have 9 crews already on the road - the capacity exists.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: INVESTMENT -->
+  <div class="slide slide--dark">
+    <div class="slide__inner">
+      <span class="label">Investment</span>
+      <h2>Growth Partnership</h2>
+      <p>Pick your tier. Higher tiers unlock add-ons from the menu. All tiers are 12-month agreements.</p>
+
+      <div class="tier-grid">
+        <!-- FOUNDATION -->
+        <div class="tier-card">
+          <div class="tier-card__name">Foundation</div>
+          <div class="tier-card__price">$3,500<span>/mo</span></div>
+          <div class="tier-card__sub">$42K/yr &middot; 12-month agreement</div>
+
+          <div class="tier-card__section-label">Strategy</div>
+          <ul class="tier-card__list">
+            <li><span class="chk">&#10003;</span> Monthly report</li>
+            <li><span class="chk">&#10003;</span> Quarterly review</li>
+            <li><span class="chk">&#10003;</span> CRM setup (HubSpot or GoHighLevel)</li>
+          </ul>
+
+          <div class="tier-card__section-label">Content &amp; Social</div>
+          <ul class="tier-card__list">
+            <li><span class="chk">&#10003;</span> 4 social posts/mo</li>
+            <li><span class="chk">&#10003;</span> 1 blog post/mo</li>
+            <li><span class="chk">&#10003;</span> 1 email campaign/mo</li>
+          </ul>
+
+          <div class="tier-card__section-label">SEO &amp; Website</div>
+          <ul class="tier-card__list">
+            <li><span class="chk">&#10003;</span> SEO fundamentals</li>
+            <li><span class="chk">&#10003;</span> Google Business Profile</li>
+            <li><span class="chk">&#10003;</span> Custom website (months 1-3)</li>
+            <li><span class="chk">&#10003;</span> Hosting included</li>
+            <li><span class="chk">&#10003;</span> Monthly updates</li>
+          </ul>
+
+          <div class="tier-card__footer-note">The complete marketing foundation</div>
+        </div>
+
+        <!-- GROWTH (HERO) -->
+        <div class="tier-card tier-card--hero">
+          <div class="tier-card__badge">Recommended</div>
+          <div class="tier-card__name">Growth</div>
+          <div class="tier-card__price">$6,000<span>/mo</span></div>
+          <div class="tier-card__sub">$72K/yr &middot; 12-month agreement</div>
+
+          <div class="tier-card__ref">&#8627; Everything in Foundation, plus:</div>
+
+          <div class="tier-card__section-label">Upgraded Automatically</div>
+          <ul class="tier-card__list">
+            <li><span class="chk">&#10003;</span> 60-minute monthly strategy call</li>
+            <li><span class="chk">&#10003;</span> Monthly reporting + insights</li>
+            <li><span class="chk">&#10003;</span> Quarterly business review</li>
+            <li><span class="chk">&#10003;</span> Full SEO program</li>
+            <li><span class="chk">&#10003;</span> Google Business Profile optimization</li>
+          </ul>
+
+          <div class="tier-card__pick">
+            <div class="tier-card__pick-badge">&#9662; Pick 2 Add-Ons</div>
+            <div class="tier-card__pick-note">from the menu below</div>
+          </div>
+        </div>
+
+        <!-- SCALE -->
+        <div class="tier-card">
+          <div class="tier-card__name">Scale</div>
+          <div class="tier-card__price">$12,000<span>/mo</span></div>
+          <div class="tier-card__sub">$144K/yr &middot; 12-month agreement</div>
+
+          <div class="tier-card__ref">&#8627; Everything in Foundation, plus:</div>
+
+          <div class="tier-card__section-label">Upgraded Automatically</div>
+          <ul class="tier-card__list">
+            <li><span class="chk">&#10003;</span> Comprehensive SEO</li>
+            <li><span class="chk">&#10003;</span> Multi-location GBP</li>
+            <li><span class="chk">&#10003;</span> Fractional CMO access (Jay or Chris)</li>
+            <li><span class="chk">&#10003;</span> Monthly executive dashboard</li>
+            <li><span class="chk">&#10003;</span> Bi-weekly strategy calls</li>
+          </ul>
+
+          <div class="tier-card__pick">
+            <div class="tier-card__pick-badge">&#9662; Pick 4 Add-Ons</div>
+            <div class="tier-card__pick-note">from the menu below</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: ADD-ON MENU -->
+  <div class="slide slide--dark">
+    <div class="slide__inner">
+      <span class="label">Growth Partnership</span>
+      <h2>The Add-On Menu</h2>
+      <p>Growth tier picks 2. Scale tier picks 4. Swap quarterly as priorities shift.</p>
+      <div class="stat-grid" style="grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 32px;">
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px;">2x</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Content Multiplier</div>
+          <div class="stat-card__sub">8 social posts, 2 blogs, 2 emails/mo</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px; color:var(--accent);">G</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Google Ads</div>
+          <div class="stat-card__sub">Campaign setup, optimization + reporting</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px; color:var(--accent);">M</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Meta Ads</div>
+          <div class="stat-card__sub">Facebook + Instagram campaigns + reporting</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px;">&#9638;</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Landing Pages</div>
+          <div class="stat-card__sub">Up to 2 per quarter with copy, design + tracking</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px; color:var(--green);">&#9830;</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Lead Gen + Nurture</div>
+          <div class="stat-card__sub">Lead magnet + 5-email follow-up sequence</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px;">&#9635;</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Print Design</div>
+          <div class="stat-card__sub">Brochures, flyers, rack cards — 1 piece/quarter</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px; color:var(--red);">&#9654;</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Webinar Creation</div>
+          <div class="stat-card__sub">Strategy, slides, promotion, registration + follow-up</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px;">&#9835;</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Podcast Support</div>
+          <div class="stat-card__sub">Production, editing, show notes + promo clips</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px; color:var(--green);">&#9881;</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">Lead Gen Resource</div>
+          <div class="stat-card__sub">Calculator, quiz, or assessment — built to capture leads</div>
+        </div>
+        <div class="stat-card" style="padding:20px 16px; text-align:left;">
+          <div style="font-family:var(--mono); font-size:20px; margin-bottom:6px; color:var(--accent);">&#9881;</div>
+          <div class="stat-card__label" style="font-size:13px; line-height:1.35; color:#fff;">CRM Automation</div>
+          <div class="stat-card__sub">Workflows, pipeline setup, lead scoring + dashboards</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== NAV BAR ====== -->
+<nav class="nav" id="nav">
+  <button class="nav__btn" id="prev" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <div class="nav__center">
+    <div class="nav__dot active" data-slide="0"></div>
+    <div class="nav__dot" data-slide="1"></div>
+    <div class="nav__dot" data-slide="2"></div>
+    <div class="nav__dot" data-slide="3"></div>
+    <div class="nav__dot" data-slide="4"></div>
+    <div class="nav__dot" data-slide="5"></div>
+    <div class="nav__dot" data-slide="6"></div>
+    <span class="nav__counter" id="counter">1 / 7</span>
+  </div>
+  <button class="nav__btn" id="next" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</nav>
+
+<script>
+(function() {
+  const deck = document.getElementById('deck');
+  const slides = deck.children;
+  const total = slides.length;
+  const counter = document.getElementById('counter');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const dots = document.querySelectorAll('.nav__dot');
+  let current = 0;
+
+  function go(n) {
+    if (n < 0 || n >= total) return;
+    current = n;
+    deck.style.transform = 'translateX(-' + (current * 100) + 'vw)';
+    counter.textContent = (current + 1) + ' / ' + total;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  prevBtn.addEventListener('click', function() { go(current - 1); });
+  nextBtn.addEventListener('click', function() { go(current + 1); });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      go(parseInt(dot.dataset.slide));
+    });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      go(current + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      go(current - 1);
+    }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
+    if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+  });
+
+  // Swipe support for touch
+  var touchStartX = 0;
+  deck.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  deck.addEventListener('touchend', function(e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) go(current + 1);
+      else go(current - 1);
+    }
+  }, { passive: true });
+
+  go(0);
+})();
+</script>
+
+</body>
+</html>
