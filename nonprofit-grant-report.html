@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BB Nonprofit Grant — Team Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1C1C1E;
+  --navy-mid: #2A2A2C;
+  --slate: #8A8A8E;
+  --slate-light: #AEAEB2;
+  --bone: #F2F2F7;
+  --white: #ffffff;
+  --gold: #E8B931;
+  --gold-dark: #C9A02A;
+  --gold-soft: #fdf6e3;
+  --emerald: #34C759;
+  --emerald-soft: #d4f5dd;
+  --amber: #E8B931;
+  --amber-soft: #fdf6e3;
+  --rose: #FF3B30;
+  --rose-soft: #ffe5e3;
+  --sky: #007AFF;
+  --sky-soft: #e0f0ff;
+  --violet: #AF52DE;
+  --violet-soft: #f3e8fa;
+  --teal: #30B0C7;
+  --teal-soft: #d9f3f8;
+  --orange: #FF9500;
+  --orange-soft: #fff0d9;
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Open Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.1);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,.15);
+  --radius: 6px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bone); color: var(--navy); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.hero { background: var(--navy); color: var(--white); padding: 3.5rem 2rem 2.5rem; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 80%, rgba(232,185,49,.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 20%, rgba(232,185,49,.04) 0%, transparent 50%); }
+.hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-label { font-family: var(--font-display); font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; font-weight: 500; background: var(--gold); color: var(--navy); display: inline-block; padding: .3rem .8rem; margin-bottom: .8rem; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: .4rem; text-transform: uppercase; }
+.hero h1 span { color: var(--gold); }
+.hero-sub { color: var(--slate-light); font-size: .9rem; margin-bottom: 2rem; }
+.stats-row { display: flex; gap: 1px; background: rgba(255,255,255,.08); border-radius: var(--radius); overflow: hidden; }
+.stat-card { flex: 1; padding: 1.1rem 1rem; background: rgba(255,255,255,.04); text-align: center; min-width: 0; }
+.stat-card:hover { background: rgba(255,255,255,.07); }
+.stat-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--white); }
+.stat-label { font-family: var(--font-display); font-size: .6rem; text-transform: uppercase; letter-spacing: .12em; color: var(--slate-light); margin-top: .15rem; font-weight: 400; }
+.stat-num.green { color: var(--gold); }
+.stat-num.amber { color: var(--gold); }
+.stat-num.rose { color: var(--rose); }
+.tally-bar { max-width: 1200px; margin: -1rem auto 0; padding: 0 2rem; position: relative; z-index: 2; }
+.tally-inner { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); display: flex; align-items: center; padding: .8rem 1.5rem; gap: 1.5rem; flex-wrap: wrap; }
+.tally-group { display: flex; align-items: center; gap: .4rem; font-size: .8rem; font-weight: 600; }
+.tally-dot { width: 10px; height: 10px; border-radius: 50%; }
+.tally-dot.yes { background: var(--gold); }
+.tally-dot.maybe { background: var(--slate); }
+.tally-dot.no { background: var(--rose); }
+.tally-count { font-family: var(--font-mono); font-size: .85rem; }
+.tally-spacer { flex: 1; }
+.export-btn { font-family: var(--font-display); font-size: .75rem; font-weight: 600; padding: .5rem 1.2rem; border: none; border-radius: 4px; background: var(--gold); color: var(--navy); cursor: pointer; transition: all .15s; text-transform: uppercase; letter-spacing: .05em; }
+.export-btn:hover { background: var(--gold-dark); }
+.export-btn.copied { background: var(--emerald); color: var(--white); }
+.controls { max-width: 1200px; margin: 1.5rem auto; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.search-box { flex: 1 1 220px; min-width: 180px; font-family: var(--font-body); font-size: .85rem; padding: .55rem .9rem; border: 1.5px solid #d0d0d0; border-radius: 4px; background: var(--white); outline: none; transition: border-color .15s; }
+.search-box:focus { border-color: var(--gold); }
+.filter-group { display: flex; flex-wrap: wrap; gap: .3rem; }
+.fbtn { font-family: var(--font-display); font-size: .7rem; font-weight: 500; padding: .4rem .75rem; border: 1.5px solid #d0d0d0; border-radius: 4px; background: var(--white); color: var(--slate); cursor: pointer; transition: all .12s; white-space: nowrap; text-transform: uppercase; letter-spacing: .04em; }
+.fbtn:hover { border-color: var(--gold); color: var(--navy); }
+.fbtn.on { background: var(--navy); border-color: var(--navy); color: var(--gold); }
+.sort-select { font-family: var(--font-display); font-size: .75rem; font-weight: 500; padding: .45rem .7rem; border: 1.5px solid #d0d0d0; border-radius: 4px; background: var(--white); cursor: pointer; color: var(--navy); text-transform: uppercase; letter-spacing: .04em; }
+.section { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
+.section-head { display: flex; align-items: baseline; gap: .75rem; margin-bottom: 1rem; }
+.section-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; text-transform: uppercase; position: relative; }
+.section-title::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 50px; height: 3px; background: var(--gold); }
+.section-count { font-family: var(--font-body); font-size: .7rem; color: var(--slate); }
+.card-grid { display: flex; flex-direction: column; gap: .6rem; }
+.card { background: var(--white); border: 1px solid #e8e8e4; border-radius: var(--radius); padding: 1.1rem 1.25rem; display: grid; grid-template-columns: 2.2rem 1fr auto; gap: .8rem 1rem; align-items: start; transition: box-shadow .15s, border-color .15s; }
+.card:hover { box-shadow: var(--shadow-md); border-color: #d0d0cc; }
+.card.voted-yes { border-left: 4px solid var(--gold); }
+.card.voted-maybe { border-left: 4px solid var(--slate); }
+.card.voted-no { border-left: 4px solid var(--rose); }
+.card.disqualified { opacity: .45; }
+.card-rank { font-family: var(--font-mono); font-size: .7rem; font-weight: 500; color: var(--slate-light); text-align: center; padding-top: .15rem; }
+.card-body { min-width: 0; }
+.card-top { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; margin-bottom: .3rem; }
+.card-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; text-decoration: none; color: var(--navy); text-transform: uppercase; }
+.card-name:hover { color: var(--gold-dark); }
+.grant-score { display: inline-flex; align-items: center; gap: .2rem; font-family: var(--font-mono); font-size: .65rem; font-weight: 600; padding: .15rem .45rem; border-radius: 4px; }
+.gs-5 { background: var(--gold); color: var(--navy); }
+.gs-4 { background: var(--gold-dark); color: var(--white); }
+.gs-3 { background: #555; color: var(--white); }
+.gs-2 { background: #888; color: var(--white); }
+.gs-1 { background: #bbb; color: #555; }
+.gs-0 { background: #ddd; color: #888; }
+.card-meta { display: flex; flex-wrap: wrap; gap: .35rem .7rem; font-size: .75rem; color: var(--slate); margin-bottom: .35rem; }
+.card-meta span { display: inline-flex; align-items: center; gap: .25rem; }
+.badge { display: inline-block; font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: .15rem .45rem; border-radius: 3px; white-space: nowrap; }
+.b-housing { background: var(--teal-soft); color: var(--teal); }
+.b-youth { background: var(--sky-soft); color: var(--sky); }
+.b-veterans { background: var(--orange-soft); color: var(--orange); }
+.b-healthcare { background: var(--rose-soft); color: var(--rose); }
+.b-food { background: var(--amber-soft); color: var(--amber); }
+.b-women { background: var(--violet-soft); color: var(--violet); }
+.b-faith { background: #f0f0f0; color: #555; }
+.b-missions { background: var(--emerald-soft); color: var(--emerald); }
+.b-arts { background: #fce7f3; color: #be185d; }
+.b-community { background: #e0e7ff; color: #4338ca; }
+.b-animal { background: #ecfccb; color: #65a30d; }
+.b-unknown { background: #f1f5f9; color: #64748b; }
+.b-verified { background: var(--emerald-soft); color: var(--emerald); }
+.b-church { background: #f0f0f0; color: #666; }
+.b-unclear { background: var(--amber-soft); color: var(--amber); }
+.b-unverified { background: var(--rose-soft); color: var(--rose); }
+.b-disqualified { background: var(--rose); color: white; }
+.b-former-client { background: #dbeafe; color: #1d4ed8; }
+.b-active-deal { background: var(--emerald-soft); color: var(--emerald); }
+.b-closed-lost { background: var(--amber-soft); color: var(--amber); }
+.flag-pill { display: inline-block; font-size: .58rem; font-weight: 600; padding: .1rem .4rem; border-radius: 3px; background: var(--rose-soft); color: var(--rose); }
+.flag-pill.warn { background: var(--amber-soft); color: var(--amber); }
+.flag-pill.info { background: var(--sky-soft); color: var(--sky); }
+.site-dots { display: inline-flex; gap: 2px; }
+.site-dots .dot { width: 7px; height: 7px; border-radius: 50%; background: #d4d4d4; }
+.site-dots .dot.filled { background: var(--gold); }
+.card-detail { font-size: .72rem; color: var(--slate); line-height: 1.45; display: flex; flex-wrap: wrap; gap: .3rem .7rem; align-items: center; }
+.card-actions { display: flex; flex-direction: column; gap: .3rem; align-items: center; }
+.vote-btn { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #ddd; background: var(--white); font-size: .9rem; cursor: pointer; transition: all .12s; display: flex; align-items: center; justify-content: center; color: #999; }
+.vote-btn:hover { transform: scale(1.1); }
+.vote-btn.vy:hover, .vote-btn.vy.on { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-dark); }
+.vote-btn.vm:hover, .vote-btn.vm.on { background: #f0f0f0; border-color: var(--slate); color: var(--slate); }
+.vote-btn.vn:hover, .vote-btn.vn.on { background: var(--rose-soft); border-color: var(--rose); color: var(--rose); }
+.footer { text-align: center; padding: 3rem 2rem; color: var(--slate); font-size: .72rem; background: var(--navy); }
+@media (max-width: 700px) {
+  .hero { padding: 2rem 1.2rem 1.5rem; }
+  .stats-row { flex-wrap: wrap; }
+  .stat-card { flex: 1 1 30%; }
+  .tally-bar, .controls, .section { padding-left: 1rem; padding-right: 1rem; }
+  .card { grid-template-columns: 1fr; gap: .5rem; padding: 1rem; }
+  .card-rank { text-align: left; }
+  .card-actions { flex-direction: row; }
+}
+@media (max-width: 480px) { .stat-card { flex: 1 1 45%; } }
+.hidden { display: none !important; }
+
+/* Voter Modal */
+.voter-overlay { position: fixed; inset: 0; background: rgba(28,28,30,.92); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.voter-modal { background: #2A2A2C; border-radius: 8px; padding: 2.5rem 2rem; max-width: 380px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+.voter-modal h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--white); text-transform: uppercase; margin-bottom: .3rem; }
+.voter-modal h2 span { color: var(--gold); }
+.voter-modal p { color: var(--slate-light); font-size: .85rem; margin-bottom: 1.5rem; }
+.voter-modal input { width: 100%; padding: .7rem 1rem; font-family: var(--font-body); font-size: 1rem; border: 2px solid #444; border-radius: 4px; background: #1C1C1E; color: #fff; outline: none; text-align: center; }
+.voter-modal input:focus { border-color: var(--gold); }
+.voter-modal button { width: 100%; margin-top: .7rem; padding: .7rem; font-family: var(--font-display); font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; border: none; border-radius: 4px; background: var(--gold); color: var(--navy); cursor: pointer; }
+.voter-modal button:hover { background: var(--gold-dark); }
+
+/* Sync indicator */
+.sync-bar { display: flex; align-items: center; gap: .5rem; }
+.sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); }
+.sync-dot.saving { background: var(--gold); animation: pulse .6s infinite; }
+.sync-dot.error { background: var(--rose); }
+.sync-label { font-size: .7rem; color: var(--slate); font-family: var(--font-mono); }
+.voter-name-tag { font-family: var(--font-display); font-size: .75rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: .05em; cursor: pointer; }
+.voter-name-tag:hover { text-decoration: underline; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+/* Team votes summary */
+.team-votes { display: flex; gap: .25rem; margin-left: auto; }
+.tv-pip { width: 18px; height: 18px; border-radius: 50%; font-size: .55rem; font-weight: 700; display: flex; align-items: center; justify-content: center; color: var(--white); background: var(--slate); }
+.tv-pip.tv-yes { background: var(--gold); color: var(--navy); }
+.tv-pip.tv-maybe { background: #555; }
+.tv-pip.tv-no { background: var(--rose); }
+</style>
+</head>
+<body>
+
+<div class="voter-overlay" id="voterOverlay" style="display:none">
+  <div class="voter-modal">
+    <h2>Who's <span>Voting?</span></h2>
+    <p>Enter your name so we can track votes by team member.</p>
+    <form id="voterForm">
+      <input type="text" id="voterInput" placeholder="Your first name" required>
+      <button type="submit">Start Reviewing</button>
+    </form>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Business Builders Marketing Agency</div>
+    <h1>Nonprofit Grant. <span>Team Review.</span></h1>
+    <p class="hero-sub">75 applicants researched. Website audits, 501(c)(3) verification, CRM cross-reference, and mission categorization complete.</p>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">75</div><div class="stat-label">Applicants</div></div>
+      <div class="stat-card"><div class="stat-num green">37</div><div class="stat-label">Jax Area</div></div>
+      <div class="stat-card"><div class="stat-num">50</div><div class="stat-label">In Florida</div></div>
+      <div class="stat-card"><div class="stat-num amber">4</div><div class="stat-label">Former Clients</div></div>
+      <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Active Deals</div></div>
+      <div class="stat-card"><div class="stat-num rose">1</div><div class="stat-label">Disqualified</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="tally-bar">
+  <div class="tally-inner">
+    <div class="tally-group"><div class="tally-dot yes"></div> Yes: <span class="tally-count" id="tYes">0</span></div>
+    <div class="tally-group"><div class="tally-dot maybe"></div> Maybe: <span class="tally-count" id="tMaybe">0</span></div>
+    <div class="tally-group"><div class="tally-dot no"></div> No: <span class="tally-count" id="tNo">0</span></div>
+    <div class="tally-group" style="color:var(--slate-light)"><span class="tally-count" id="tRemain">75</span> remaining</div>
+    <div class="sync-bar"><div class="sync-dot" id="syncDot"></div><span class="sync-label" id="syncLabel">Synced</span></div>
+    <span class="voter-name-tag" id="voterTag" title="Click to change name"></span>
+    <div class="tally-spacer"></div>
+    <button class="export-btn" id="exportBtn">Copy "Yes" List</button>
+  </div>
+</div>
+
+<div class="controls">
+  <input type="text" class="search-box" id="searchBox" placeholder="Search orgs, contacts, locations...">
+  <div class="filter-group" id="typeFilters">
+    <button class="fbtn on" data-v="all">All</button>
+    <button class="fbtn" data-v="nonprofit">Nonprofits</button>
+    <button class="fbtn" data-v="church">Churches</button>
+    <button class="fbtn" data-v="flagged">Flagged</button>
+  </div>
+  <div class="filter-group" id="locFilters">
+    <button class="fbtn on" data-v="all">All Locations</button>
+    <button class="fbtn" data-v="jax">Jax Area</button>
+    <button class="fbtn" data-v="fl">Florida</button>
+    <button class="fbtn" data-v="out">Out of State</button>
+  </div>
+  <select class="sort-select" id="sortSelect">
+    <option value="grantFit">Sort: Grant Fit</option>
+    <option value="salesFit">Sort: Sales Fit</option>
+    <option value="siteScore">Sort: Site Score</option>
+    <option value="name">Sort: Name</option>
+  </select>
+</div>
+
+<div class="section" id="topSection">
+  <div class="section-head">
+    <div class="section-title">Top Grant Picks</div>
+    <div class="section-count">Highest grant-fit scores</div>
+  </div>
+  <div class="card-grid" id="topGrid"></div>
+</div>
+
+<div class="section" id="salesSection">
+  <div class="section-head">
+    <div class="section-title">Sales Opportunities</div>
+    <div class="section-count">Former clients, active deals, and warm leads for the 2nd offer</div>
+  </div>
+  <div class="card-grid" id="salesGrid"></div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <div class="section-title">All Applicants</div>
+    <div class="section-count" id="allCount">75 organizations</div>
+  </div>
+  <div class="card-grid" id="allGrid"></div>
+</div>
+
+<div class="footer">
+  <span style="color:var(--gold);font-family:var(--font-display);text-transform:uppercase;letter-spacing:.1em;font-weight:600">Business Builders</span><br>
+  Nonprofit Grant Review &mdash; Data pulled from HubSpot &amp; web research on March 16, 2026<br>
+  Votes are saved locally in your browser. Each team member votes independently.
+</div>
+
+<script>
+// NOTE: All data below is static, trusted, first-party data from our own HubSpot CRM.
+// No user-supplied content is rendered — all values are from our internal research pipeline.
+const DATA = [{"id":1,"org":"Compassion Baptist Church","contact":"Alison Swanagain","email":"office@compassionbaptist.org","website":"compassionbaptist.org","type":"church","category":"Faith/Ministry","location":"Chicago, IL","jaxArea":false,"florida":false,"siteScore":4,"platform":"Squarespace","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Alison Swanagain in CRM","flags":[],"grantFit":2,"salesFit":2},{"id":2,"org":"New Walk Church","contact":"Michael Brockhouse","email":"michael@newwalk.church","website":"newwalk.church","type":"church","category":"Faith/Ministry","location":"Zephyrhills, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"WordPress (Divi)","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"active-deal","hubspotNote":"$1,950 Discovery Held + $15K closed-lost 2023","flags":["active-deal"],"grantFit":3,"salesFit":5},{"id":3,"org":"WGV Church (The Village Church)","contact":"Todd Kornahrens","email":"pastortodd@wgv.church","website":"wgv.church","type":"church","category":"Faith/Ministry","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Wix","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"closed-lost","hubspotNote":"$8K closed-lost 2016","flags":["past-deal"],"grantFit":3,"salesFit":4},{"id":4,"org":"Riverbend Church","contact":"Todd Slade","email":"todd@riverbendchurch.life","website":"riverbendchurch.life","type":"church","category":"Faith/Ministry","location":"Gainesville, GA","jaxArea":false,"florida":false,"siteScore":4,"platform":"Custom (React)","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"4 contacts in CRM","flags":[],"grantFit":2,"salesFit":2},{"id":5,"org":"Cedar Church","contact":"Tim Pollock","email":"tim@cedarchurchsta.com","website":"cedarchurchsta.com","type":"church","category":"Faith/Ministry","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Tim Pollock in CRM","flags":[],"grantFit":3,"salesFit":3},{"id":6,"org":"Chets Creek Church","contact":"Andrew McCallum","email":"andrew@chetscreek.com","website":"chetscreek.com","type":"church","category":"Faith/Ministry","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"9 contacts in CRM","flags":[],"grantFit":3,"salesFit":3},{"id":7,"org":"Bridge to Christ","contact":"Craig Carder","email":"craig@c3mdc.com","website":"bridgetochrist.com","type":"church","category":"Faith/Ministry","location":"Bristol, CT","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"former-client","hubspotNote":"$8,008 closed-won Dec 2020","flags":["former-client"],"grantFit":2,"salesFit":4},{"id":8,"org":"88.7 The Cross","contact":"Linda Meyers","email":"linda@887thecross.com","website":"887thecross.com","type":"church","category":"Faith/Ministry","location":"West Monroe, LA","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Linda Meyers since May 2025","flags":[],"grantFit":2,"salesFit":2},{"id":9,"org":"River City Church","contact":"Kevin Snow","email":"kevin@rivercitychurch.com","website":"rivercitychurch.com","type":"church","category":"Faith/Ministry","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"active-deal","hubspotNote":"$7,500 Ministry Blueprint at Initial Contact","flags":["active-deal"],"grantFit":3,"salesFit":5},{"id":10,"org":"Fort Caroline Baptist","contact":"Stuart Owens","email":"stuarto@fcbcjax.com","website":"fortcaroline.com","type":"church","category":"Faith/Ministry","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Custom (React)","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":[],"grantFit":3,"salesFit":3},{"id":11,"org":"Anchor Faith","contact":"Marisa Christie","email":"mchristie@anchorfaith.com","website":"anchorfaith.com","type":"church","category":"Faith/Ministry","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Marisa Christie added Mar 2026","flags":[],"grantFit":3,"salesFit":3},{"id":12,"org":"Hope Winter Garden","contact":"Wesley Beacham","email":"wes@hopewintergarden.com","website":"hopewintergarden.com","type":"church","category":"Faith/Ministry","location":"Winter Garden, FL","jaxArea":false,"florida":true,"siteScore":3,"platform":"Wix","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Wesley Beacham added Mar 2026","flags":["low-score"],"grantFit":4,"salesFit":3},{"id":13,"org":"Christ Church Willis","contact":"Trevor Smith","email":"trevorsmith@ccwillis.org","website":"ccwillis.org","type":"church","category":"Faith/Ministry","location":"Willis, TX","jaxArea":false,"florida":false,"siteScore":3,"platform":"Wix","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Trevor Smith since Sep 2024","flags":["low-score"],"grantFit":2,"salesFit":2},{"id":14,"org":"Quest Vineyard","contact":"Stephanie Sheppard","email":"stephanie@questvineyard.org","website":"questvineyard.org","type":"church","category":"Faith/Ministry","location":"Westerville, OH","jaxArea":false,"florida":false,"siteScore":4,"platform":"Nucleus CMS","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Since Oct 2024","flags":[],"grantFit":2,"salesFit":2},{"id":15,"org":"Beaches Habitat for Humanity","contact":"Judy Poppell + 2 others","email":"jpoppell@beacheshabitat.org","website":"beacheshabitat.org","type":"nonprofit","category":"Housing","location":"Atlantic Beach, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress","nonprofit":"verified","charityRating":4,"revenue":"$3.8M","hubspot":"contact-only","hubspotNote":"3 contacts; Steve Gilbert since 2022","flags":["top-rated"],"grantFit":4,"salesFit":3},{"id":16,"org":"Protential","contact":"Tony Williams, MK Ferry","email":"twilliams@protential.org","website":"protential.org","type":"nonprofit","category":"Youth/Education","location":"Tampa, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"former-client","hubspotNote":"$15K Video Deal closed-won Sep 2025","flags":["former-client"],"grantFit":3,"salesFit":5},{"id":17,"org":"SAYS (St. Augustine Youth Services)","contact":"Michelle Skidmore, Kelly Smith","email":"michelles@sayskids.org","website":"sayskids.org","type":"nonprofit","category":"Youth/Education","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"verified","charityRating":4,"revenue":"multi-million","hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["top-rated"],"grantFit":5,"salesFit":3},{"id":18,"org":"Fathom Family","contact":"Leah Crawford, Taran Nelson","email":"taran@fathomfamily.com","website":"fathomfamily.com","type":"nonprofit","category":"Women/Family","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Taran Nelson added Mar 2026","flags":[],"grantFit":4,"salesFit":3},{"id":19,"org":"Haiti Deaf Academy","contact":"Margaret Spratlin","email":"margaret@haitideafacademy.com","website":"haitideafacademy.com","type":"nonprofit","category":"International/Missions","location":"Walker, IA (serves Haiti)","jaxArea":false,"florida":false,"siteScore":3.5,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":3,"salesFit":2},{"id":20,"org":"Lone Warrior Foundation","contact":"Robert Chumbook","email":"robchumbook@lonewarriorfoundation.com","website":"lonewarriorfoundation.com","type":"nonprofit","category":"Community Development","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"verified","charityRating":null,"revenue":"<$50K","hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["small-org"],"grantFit":4,"salesFit":2},{"id":21,"org":"DL Institute","contact":"Marcus Harris","email":"mharris@adflegal.org","website":"dlinstitute.org","type":"nonprofit","category":"Community Development","location":"Montgomery Village, MD","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":[],"grantFit":2,"salesFit":2},{"id":22,"org":"COC Academy","contact":"Walkiria Cash Ward","email":"walkycash@gmail.com","website":"cocacademy.org","type":"nonprofit","category":"Youth/Education","location":"Orlando, FL","jaxArea":false,"florida":true,"siteScore":3,"platform":"Custom HTML","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["low-score","verify-501c3"],"grantFit":4,"salesFit":3},{"id":23,"org":"Beyond 90","contact":"Barton Chelf","email":"grants@beyond90.org","website":"beyond90.org","type":"nonprofit","category":"Housing","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Wix","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":4,"salesFit":3},{"id":24,"org":"Hadassah's Hope","contact":"Tami Taunton","email":"tami@hhjax.com","website":"hadassahshope.org","type":"nonprofit","category":"Women/Family","location":"Jacksonville Beach, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"verified","charityRating":3,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["coe22-affiliated"],"grantFit":5,"salesFit":3},{"id":25,"org":"Yoga 4 Change (Y4C)","contact":"Kimberly Simon","email":"ksimon@y4c.org","website":"y4c.org","type":"nonprofit","category":"Community Development","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":4,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["name-mismatch"],"grantFit":4,"salesFit":3},{"id":26,"org":"RFL Ministries","contact":"Lucas Duran","email":"lucas@rflmin.org","website":"rflmin.org","type":"nonprofit","category":"International/Missions","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["verify-501c3"],"grantFit":3,"salesFit":2},{"id":27,"org":"Village of Hope GA","contact":"Sherry Grant","email":"sherry@iserveministries.org","website":"villageofhopega.org","type":"nonprofit","category":"Housing","location":"Jackson County, GA","jaxArea":false,"florida":false,"siteScore":3,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["low-score"],"grantFit":2,"salesFit":2},{"id":28,"org":"Warrior Freedom","contact":"Monica Piper","email":"executivedirector@warriorfreedom.org","website":"warriorfreedom.org","type":"nonprofit","category":"Veterans/Military","location":"Chattanooga, TN","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress (Avada)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":3,"salesFit":2},{"id":29,"org":"HUGS Cafe","contact":"Jennifer Buschman","email":"grants@hugscafe.org","website":"hugscafe.org","type":"nonprofit","category":"Healthcare/Disabilities","location":"McKinney, TX","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":4,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["top-rated"],"grantFit":2,"salesFit":2},{"id":30,"org":"The Flame Christian Cooperative","contact":"Kristy Miller","email":"theflamechristiancooperative@gmail.com","website":"theflamechristiancooperative.com","type":"nonprofit","category":"Youth/Education","location":"Ponte Vedra, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["new-501c3"],"grantFit":4,"salesFit":3},{"id":31,"org":"Narrow Gate","contact":"Angie Cornwell","email":"angiecornwell@narrowgate.org","website":"narrowgate.org","type":"nonprofit","category":"Housing","location":"Duck River, TN","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":4,"revenue":"$5M+","hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["top-rated"],"grantFit":2,"salesFit":2},{"id":32,"org":"Helping Hands of Jacksonville","contact":"Sasha Gardner","email":"helpinghandsofjacksonville@gmail.com","website":"helpinghandsofjacksonville.com","type":"nonprofit","category":"Housing","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"Google Sites","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["low-score","verify-501c3","highest-need"],"grantFit":5,"salesFit":4},{"id":33,"org":"Hunger Fight","contact":"Dean Porter","email":"deanp@hungerfight.org","website":"hungerfight.org","type":"nonprofit","category":"Food/Hunger","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":4,"revenue":"$2.3M","hubspot":"former-client","hubspotNote":"$17,067 closed-won 2021; 6 contacts","flags":["former-client","top-rated"],"grantFit":4,"salesFit":5},{"id":34,"org":"St. Johns Academy","contact":"Jacob Petty","email":"jacobpetty@stjohnsacademy.com","website":"stjohnsacademy.com","type":"nonprofit","category":"Youth/Education","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Bridge)","nonprofit":"verified","charityRating":2,"revenue":"$1.5M","hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["low-charity-rating"],"grantFit":3,"salesFit":3},{"id":35,"org":"Three Grains of Rice","contact":"Jennifer Couch","email":"jcouch@threegrainsofrice.org","website":"threegrainsofrice.org","type":"nonprofit","category":"Food/Hunger","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["low-score"],"grantFit":4,"salesFit":3},{"id":36,"org":"The Nest Women's Center","contact":"Lisa K Miller","email":"lisa@thenestwomenscenter.org","website":"thenestjax.com","type":"nonprofit","category":"Women/Family","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"Weebly","nonprofit":"verified","charityRating":null,"revenue":"$424K","hubspot":"none","hubspotNote":"","flags":["low-score","highest-need"],"grantFit":5,"salesFit":4},{"id":37,"org":"St. Gerard Campus","contact":"Sara Vanik","email":"sara.vanik@stgerardcampus.org","website":"stgerardcampus.org","type":"nonprofit","category":"Women/Family","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":3,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":4,"salesFit":3},{"id":38,"org":"New Life Warehouse","contact":"Mindy Miller","email":"mindy@newlifewarehouse.org","website":"newlifewarehouse.org","type":"nonprofit","category":"Housing","location":"Tampa, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"WordPress (Divi)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Since May 2025","flags":[],"grantFit":3,"salesFit":3},{"id":39,"org":"Night to Shine Jax","contact":"Kelly Powell","email":"info@nighttoshinejax.com","website":"nighttoshinejax.com","type":"nonprofit","category":"Healthcare/Disabilities","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"GoDaddy","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["coe22-affiliated"],"grantFit":4,"salesFit":3},{"id":40,"org":"Wildflower Healthcare","contact":"Chynequa King","email":"grants@wildflowerhealthcare.org","website":"wildflowerhealthcare.org","type":"nonprofit","category":"Healthcare/Disabilities","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Since 2018","flags":[],"grantFit":4,"salesFit":3},{"id":41,"org":"Villages of Hope","contact":"Leslie Baccash","email":"lbaccash@comcast.net","website":"villagesofhope.org","type":"nonprofit","category":"Women/Family","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["low-score"],"grantFit":5,"salesFit":3},{"id":42,"org":"Hannah's Home SF","contact":"Courtney Tellier","email":"ctellier@hannahshomesf.org","website":"hannahshomesf.org","type":"nonprofit","category":"Women/Family","location":"Tequesta, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Since Jul 2025","flags":[],"grantFit":3,"salesFit":3},{"id":43,"org":"Dogwood Ranch","contact":"Dana Lopez","email":"danalopez@dogwoodranch.org","website":"dogwoodranch.org","type":"nonprofit","category":"Youth/Education","location":"Ozark, MO","jaxArea":false,"florida":false,"siteScore":null,"platform":"Unknown","nonprofit":"verified","charityRating":null,"revenue":"$100K+","hubspot":"contact-only","hubspotNote":"Since Oct 2025","flags":[],"grantFit":2,"salesFit":2},{"id":44,"org":"Firm Foundations Academy NW","contact":"Clare Kozushko","email":"clare.ffanw@gmail.com","website":"firmfoundationsacademy-nw.com","type":"nonprofit","category":"Youth/Education","location":"Newberg, OR","jaxArea":false,"florida":false,"siteScore":4,"platform":"GoDaddy","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":[],"grantFit":2,"salesFit":2},{"id":45,"org":"Gift of Dance","contact":"Cristina Duncan","email":"cristina@giftofdance.net","website":"giftofdance.co","type":"nonprofit","category":"Arts/Culture","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":"<$10K","hubspot":"none","hubspotNote":"","flags":["low-score","small-org"],"grantFit":4,"salesFit":3},{"id":46,"org":"Operation Lifeline","contact":"Erick Saks","email":"erick@oplifeline.org","website":"oplifeline.org","type":"nonprofit","category":"Veterans/Military","location":"Green Cove Springs, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Wix","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"closed-lost","hubspotNote":"$4,500 Website Blueprint closed-lost Oct 2025","flags":["past-deal"],"grantFit":4,"salesFit":5},{"id":47,"org":"Project Savior Outdoors","contact":"Ashley Domingo","email":"ashley@projectsavioroutdoors.org","website":"projectsavioroutdoors.org","type":"nonprofit","category":"Veterans/Military","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Since Dec 2025","flags":[],"grantFit":4,"salesFit":3},{"id":48,"org":"A Women's Resource Center","contact":"(office)","email":"office@awrcenter.org","website":"awrcenter.org","type":"nonprofit","category":"Women/Family","location":"Palatka, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":3,"salesFit":3},{"id":49,"org":"Safe Harbor Boys Home","contact":"Matthew Filer","email":"mattf@safeharborboyshome.org","website":"safeharborboyshome.org","type":"nonprofit","category":"Youth/Education","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Bricks)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":4,"salesFit":3},{"id":50,"org":"Operation Barnabas","contact":"John Green","email":"john@operationbarnabas.com","website":"operationbarnabas.com","type":"nonprofit","category":"Veterans/Military","location":"Orange Park, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (YOOtheme)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":4,"salesFit":3},{"id":51,"org":"Fostering Connections FL","contact":"Aubrie Simpson-Gotham","email":"fosteringconnectionsfl@gmail.com","website":"fosteringconnectionsfl.org","type":"nonprofit","category":"Women/Family","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"Wix","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["low-score"],"grantFit":4,"salesFit":3},{"id":52,"org":"A New Florida (Anew)","contact":"Alison Ungaro","email":"alison@anewflorida.com","website":"anewflorida.com","type":"nonprofit","category":"Women/Family","location":"Gainesville, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"WordPress (Oxygen)","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":[],"grantFit":3,"salesFit":3},{"id":53,"org":"Villages Baseball","contact":"Jamie Franks","email":"jfranks09@gmail.com","website":"villagesbaseball.org","type":"nonprofit","category":"Youth/Education","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"SportsEngine","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["low-score"],"grantFit":3,"salesFit":2},{"id":54,"org":"Catholic Foundation","contact":"Kim Howard","email":"khoward@dosafl.com","website":"dosafl.com/catholic-foundation","type":"nonprofit","category":"Faith/Ministry","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":"$50M+ endowment","hubspot":"contact-only","hubspotNote":"Since 2024","flags":[],"grantFit":2,"salesFit":3},{"id":55,"org":"Forest Hill","contact":"Natalie Shepard","email":"natalie.shepard@foresthill.org","website":"foresthill.org","type":"church","category":"Faith/Ministry","location":"Charlotte, NC","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress","nonprofit":"church-exempt","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"10 contacts (bulk import)","flags":["not-florida"],"grantFit":1,"salesFit":2},{"id":56,"org":"Global Missions 365","contact":"Gary Crawford","email":"gary@globalmissions365.org","website":"globalmissions365.org","type":"nonprofit","category":"International/Missions","location":"Alachua, FL","jaxArea":false,"florida":true,"siteScore":3,"platform":"Wix","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Since Dec 2021","flags":["low-score"],"grantFit":3,"salesFit":2},{"id":57,"org":"Charis Care","contact":"Sarah Orgunov","email":"sarah@chariscare.com","website":"chariscare.com","type":"nonprofit","category":"Healthcare/Disabilities","location":"Yulee, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":[],"grantFit":4,"salesFit":3},{"id":58,"org":"Smart Flagler","contact":"Caroline Johnson","email":"caroline@smartflagler.com","website":"smartflagler.com","type":"nonprofit","category":"Animal/Environment","location":"Palm Coast, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["verify-501c3"],"grantFit":3,"salesFit":3},{"id":59,"org":"Spring in the Desert","contact":"Linda F. Gorham","email":"lgorham@springinthedesert.org","website":"springinthedesert.org","type":"nonprofit","category":"Faith/Ministry","location":"Cockeysville, MD","jaxArea":false,"florida":false,"siteScore":3,"platform":"WordPress","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"closed-lost","hubspotNote":"$9,500 blueprint closed-lost 2021","flags":["low-score","verify-501c3","past-deal"],"grantFit":2,"salesFit":4},{"id":60,"org":"Campus Light","contact":"Xunkai Chen","email":"xunkai.chen@acts2.network","website":"campuslight.org","type":"church","category":"Faith/Ministry","location":"New Brunswick, NJ","jaxArea":false,"florida":false,"siteScore":3,"platform":"Wix","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["low-score","not-florida","verify-501c3"],"grantFit":1,"salesFit":1},{"id":61,"org":"Jax TPA (The Performance Academy)","contact":"Kathryn McAvoy","email":"kathryn@jaxtpa.org","website":"jaxtpa.org","type":"nonprofit","category":"Arts/Culture","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Notes Mar 2026","flags":["verify-501c3"],"grantFit":4,"salesFit":3},{"id":62,"org":"Aid the Way","contact":"Lonna Gibson","email":"lonna@aidtheway.org","website":"aidtheway.org","type":"nonprofit","category":"International/Missions","location":"Riverside, CA","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress","nonprofit":"unverified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Since May 2025","flags":["verify-501c3","not-florida"],"grantFit":2,"salesFit":2},{"id":63,"org":"Forme Ministries","contact":"Tanner DeLoach","email":"tanner@formeministries.org","website":"formeministries.org","type":"nonprofit","category":"Community Development","location":"Unknown","jaxArea":false,"florida":false,"siteScore":3,"platform":"WordPress.com (free)","nonprofit":"unverified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["low-score","verify-501c3","highest-need"],"grantFit":2,"salesFit":2},{"id":64,"org":"Clay County Habitat","contact":"Carolina Morrow","email":"cmorrow@clayhabitat.org","website":"clayhabitat.org","type":"nonprofit","category":"Housing","location":"Green Cove Springs, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"WordPress (Elementor)","nonprofit":"verified","charityRating":4,"revenue":null,"hubspot":"contact-only","hubspotNote":"Carolina Morrow, Juan Bolanos","flags":["top-rated"],"grantFit":4,"salesFit":3},{"id":65,"org":"Jax Center for Children's Rights","contact":"Betsy Dobbins","email":"bdobbins@jaxccr.org","website":"jaxccr.org","type":"nonprofit","category":"Community Development","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"WordPress (Brizy)","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["name-mismatch","low-score","verify-501c3"],"grantFit":4,"salesFit":3},{"id":66,"org":"CPC of St. Augustine","contact":"Kristin Morrison","email":"kmorrison@cpcasa.org","website":"cpcasa.org","type":"nonprofit","category":"Women/Family","location":"St. Augustine, FL","jaxArea":true,"florida":true,"siteScore":4,"platform":"Squarespace","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"former-client","hubspotNote":"$1,140 Coaching closed-won 2021","flags":["former-client"],"grantFit":4,"salesFit":4},{"id":67,"org":"Saved 2 Serve","contact":"William Darnell","email":"william@saved2serve.com","website":"saved2serve.com","type":"nonprofit","category":"Faith/Ministry","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"Added Mar 2026","flags":["low-score"],"grantFit":4,"salesFit":3},{"id":68,"org":"Made for More Ministry","contact":"Danielle Williams","email":"madeformoreministry@mail.com","website":"madeformoreministry.org","type":"nonprofit","category":"Faith/Ministry","location":"Unknown","jaxArea":false,"florida":false,"siteScore":4,"platform":"Canva","nonprofit":"unverified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["verify-501c3"],"grantFit":2,"salesFit":2},{"id":69,"org":"Horizon Winds","contact":"Stephen Alia","email":"salia@horizonpaa.org","website":"horizonwinds.org","type":"nonprofit","category":"Arts/Culture","location":"Bradenton, FL","jaxArea":false,"florida":true,"siteScore":4,"platform":"Wix","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["verify-501c3"],"grantFit":2,"salesFit":2},{"id":70,"org":"For Women Vets","contact":"Courtney Griffin","email":"info@forwomenvets.org","website":"forwomenvets.org","type":"nonprofit","category":"Veterans/Military","location":"Jacksonville, FL","jaxArea":true,"florida":true,"siteScore":3,"platform":"WordPress","nonprofit":"verified","charityRating":null,"revenue":null,"hubspot":"contact-only","hubspotNote":"2 records","flags":["low-score"],"grantFit":4,"salesFit":3},{"id":71,"org":"TNRB / Erika Bush Odom","contact":"Erika Bush Odom","email":"drerika@tnrb.org","website":"","type":"flagged","category":"Unknown","location":"Unknown","jaxArea":false,"florida":false,"siteScore":null,"platform":"None","nonprofit":"unverified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["no-website","verify-501c3"],"grantFit":1,"salesFit":1},{"id":72,"org":"My Freedom Living","contact":"Erika Porter","email":"eporter@myfreedomliving.co","website":"myfreedomliving.co","type":"flagged","category":"Unknown","location":"Unknown","jaxArea":false,"florida":false,"siteScore":4,"platform":"WordPress","nonprofit":"unclear","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["verify-501c3"],"grantFit":1,"salesFit":1},{"id":73,"org":"Rashad Hamilton","contact":"Rashad Hamilton","email":"rashadhamilton79@gmail.com","website":"","type":"flagged","category":"Unknown","location":"Unknown","jaxArea":false,"florida":false,"siteScore":null,"platform":"None","nonprofit":"unverified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["no-website","verify-501c3"],"grantFit":1,"salesFit":1},{"id":74,"org":"Mkulima Exports","contact":"Godfrey Lukanga Musoke","email":"contact@mkulimaexports.africa","website":"","type":"disqualified","category":"N/A","location":"Uganda","jaxArea":false,"florida":false,"siteScore":null,"platform":"None","nonprofit":"not-nonprofit","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["disqualified","for-profit"],"grantFit":0,"salesFit":0},{"id":75,"org":"Underconstruction Ministry","contact":"Dominick Swabacker","email":"swabacker78@gmail.com","website":"","type":"flagged","category":"Faith/Ministry","location":"Unknown","jaxArea":false,"florida":false,"siteScore":null,"platform":"None","nonprofit":"unverified","charityRating":null,"revenue":null,"hubspot":"none","hubspotNote":"","flags":["no-website","verify-501c3"],"grantFit":1,"salesFit":1}];
+
+let activeFilters = { type: 'all', loc: 'all' };
+let currentSort = 'grantFit';
+
+const catClass = c => ({'Housing':'b-housing','Youth/Education':'b-youth','Veterans/Military':'b-veterans','Healthcare/Disabilities':'b-healthcare','Food/Hunger':'b-food','Women/Family':'b-women','Faith/Ministry':'b-faith','International/Missions':'b-missions','Arts/Culture':'b-arts','Community Development':'b-community','Animal/Environment':'b-animal'}[c] || 'b-unknown');
+const npClass = n => ({'verified':'b-verified','church-exempt':'b-church','unclear':'b-unclear','unverified':'b-unverified','not-nonprofit':'b-disqualified'}[n] || 'b-unknown');
+const npLabel = n => ({'verified':'Verified 501(c)(3)','church-exempt':'Church Exempt','unclear':'Needs Verification','unverified':'Unverified','not-nonprofit':'NOT NONPROFIT'}[n] || n);
+const hubClass = h => ({'former-client':'b-former-client','active-deal':'b-active-deal','closed-lost':'b-closed-lost'}[h] || '');
+const hubLabel = h => ({'former-client':'Former Client','active-deal':'Active Deal','closed-lost':'Closed-Lost','contact-only':'In CRM','none':''}[h] || '');
+const flagClass = f => { if (['disqualified','for-profit','no-website','no-org'].includes(f)) return ''; if (['verify-501c3','name-mismatch','low-charity-rating'].includes(f)) return 'warn'; return 'info'; };
+const flagLabel = f => ({'low-score':'Needs Better Site','verify-501c3':'Verify 501(c)(3)','highest-need':'Highest Need','top-rated':'Top Rated','former-client':'Former Client','active-deal':'Active Deal','past-deal':'Past Deal','small-org':'Small Org','new-501c3':'New 501(c)(3)','coe22-affiliated':'CoE22 Affiliated','name-mismatch':'Name Mismatch','no-website':'No Website','no-org':'No Org','disqualified':'Disqualified','for-profit':'For-Profit','low-charity-rating':'Low CN Rating','not-florida':'Not Florida'}[f] || f);
+
+function dots(score) {
+  if (score == null) return '<span style="color:#ccc;font-size:.7rem">N/A</span>';
+  let h = '<span class="site-dots">';
+  for (let i = 1; i <= 5; i++) h += '<span class="dot' + (i <= Math.round(score) ? ' filled' : '') + '"></span>';
+  return h + '</span>';
+}
+
+function buildCard(d) {
+  const card = document.createElement('div');
+  const vote = localStorage.getItem('bbgrant-' + d.id);
+  card.className = 'card' + (vote ? ' voted-' + vote : '') + (d.type === 'disqualified' ? ' disqualified' : '');
+  card.dataset.id = d.id;
+  card.dataset.type = d.type;
+  card.dataset.jax = d.jaxArea;
+  card.dataset.fl = d.florida;
+  card.dataset.gf = d.grantFit;
+  card.dataset.sf = d.salesFit;
+  card.dataset.ss = d.siteScore || 0;
+  card.dataset.search = (d.org + ' ' + d.contact + ' ' + d.location + ' ' + d.category + ' ' + d.email + ' ' + (d.hubspotNote || '')).toLowerCase();
+
+  const rank = document.createElement('div');
+  rank.className = 'card-rank';
+  rank.textContent = '#' + d.id;
+
+  const body = document.createElement('div');
+  body.className = 'card-body';
+
+  // Top row
+  const top = document.createElement('div');
+  top.className = 'card-top';
+  const nameLink = document.createElement('a');
+  nameLink.className = 'card-name';
+  nameLink.href = d.website ? 'https://' + d.website : '#';
+  nameLink.target = '_blank';
+  nameLink.rel = 'noopener';
+  nameLink.textContent = d.org;
+  top.appendChild(nameLink);
+
+  const gs = document.createElement('span');
+  gs.className = 'grant-score gs-' + d.grantFit;
+  gs.textContent = 'GF ' + d.grantFit;
+  top.appendChild(gs);
+
+  const catBadge = document.createElement('span');
+  catBadge.className = 'badge ' + catClass(d.category);
+  catBadge.textContent = d.category;
+  top.appendChild(catBadge);
+
+  if (d.charityRating) {
+    const cnBadge = document.createElement('span');
+    cnBadge.className = 'badge b-verified';
+    cnBadge.textContent = d.charityRating + '/4 CN';
+    top.appendChild(cnBadge);
+  }
+  body.appendChild(top);
+
+  // Meta row
+  const meta = document.createElement('div');
+  meta.className = 'card-meta';
+  const loc = document.createElement('span');
+  loc.textContent = d.location + (d.jaxArea ? ' (Jax)' : '');
+  meta.appendChild(loc);
+  const con = document.createElement('span');
+  con.textContent = d.contact;
+  meta.appendChild(con);
+  const plat = document.createElement('span');
+  // Use a safe approach for the dots HTML since it's generated from trusted numeric data
+  const dotsContainer = document.createElement('span');
+  dotsContainer.innerHTML = dots(d.siteScore);
+  const platText = document.createTextNode(' ' + d.platform);
+  plat.appendChild(dotsContainer);
+  plat.appendChild(platText);
+  meta.appendChild(plat);
+  if (d.revenue) {
+    const rev = document.createElement('span');
+    rev.textContent = d.revenue;
+    meta.appendChild(rev);
+  }
+  body.appendChild(meta);
+
+  // Detail row
+  const detail = document.createElement('div');
+  detail.className = 'card-detail';
+  const npBadge = document.createElement('span');
+  npBadge.className = 'badge ' + npClass(d.nonprofit);
+  npBadge.textContent = npLabel(d.nonprofit);
+  detail.appendChild(npBadge);
+
+  const hl = hubLabel(d.hubspot);
+  if (hl) {
+    const hBadge = document.createElement('span');
+    hBadge.className = 'badge ' + hubClass(d.hubspot);
+    hBadge.textContent = hl;
+    detail.appendChild(hBadge);
+  }
+  if (d.hubspotNote) {
+    const hn = document.createElement('span');
+    hn.style.fontStyle = 'italic';
+    hn.textContent = d.hubspotNote;
+    detail.appendChild(hn);
+  }
+  d.flags.forEach(f => {
+    const pill = document.createElement('span');
+    pill.className = 'flag-pill ' + flagClass(f);
+    pill.textContent = flagLabel(f);
+    detail.appendChild(pill);
+  });
+  body.appendChild(detail);
+
+  // Actions
+  const actions = document.createElement('div');
+  actions.className = 'card-actions';
+  [['vy','yes','\u2713'],['vm','maybe','?'],['vn','no','\u2717']].forEach(([cls, type, symbol]) => {
+    const btn = document.createElement('button');
+    btn.className = 'vote-btn ' + cls + (vote === type ? ' on' : '');
+    btn.title = type.charAt(0).toUpperCase() + type.slice(1);
+    btn.textContent = symbol;
+    btn.addEventListener('click', () => castVote(d.id, type));
+    actions.appendChild(btn);
+  });
+
+  card.appendChild(rank);
+  card.appendChild(body);
+  card.appendChild(actions);
+  return card;
+}
+
+function castVote(id, type) {
+  const key = 'bbgrant-' + id;
+  const cur = localStorage.getItem(key);
+  if (cur === type) localStorage.removeItem(key);
+  else localStorage.setItem(key, type);
+  refreshAll();
+}
+
+function updateTally() {
+  let y = 0, m = 0, n = 0;
+  DATA.forEach(d => {
+    const v = localStorage.getItem('bbgrant-' + d.id);
+    if (v === 'yes') y++; else if (v === 'maybe') m++; else if (v === 'no') n++;
+  });
+  document.getElementById('tYes').textContent = y;
+  document.getElementById('tMaybe').textContent = m;
+  document.getElementById('tNo').textContent = n;
+  document.getElementById('tRemain').textContent = DATA.length - y - m - n;
+}
+
+function sortedData(key) {
+  return [...DATA].sort((a, b) => {
+    if (key === 'name') return a.org.localeCompare(b.org);
+    return (b[key] || 0) - (a[key] || 0);
+  });
+}
+
+function renderGrid(container, items) {
+  container.replaceChildren();
+  items.forEach(d => container.appendChild(buildCard(d)));
+}
+
+function refreshAll() {
+  renderGrid(document.getElementById('topGrid'), sortedData('grantFit').filter(d => d.grantFit >= 4 && d.type !== 'disqualified'));
+  renderGrid(document.getElementById('salesGrid'), sortedData('salesFit').filter(d => d.salesFit >= 4));
+  renderGrid(document.getElementById('allGrid'), sortedData(currentSort));
+  applyFilters();
+  updateTally();
+}
+
+function applyFilters() {
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  const cards = document.querySelectorAll('#allGrid .card');
+  let shown = 0;
+  cards.forEach(c => {
+    let show = true;
+    const t = c.dataset.type;
+    const jax = c.dataset.jax === 'true';
+    const fl = c.dataset.fl === 'true';
+    const search = c.dataset.search;
+    if (activeFilters.type !== 'all') {
+      if (activeFilters.type === 'flagged') show = (t === 'flagged' || t === 'disqualified');
+      else show = (t === activeFilters.type);
+    }
+    if (show && activeFilters.loc !== 'all') {
+      if (activeFilters.loc === 'jax') show = jax;
+      else if (activeFilters.loc === 'fl') show = fl;
+      else if (activeFilters.loc === 'out') show = !fl;
+    }
+    if (show && q) show = search.includes(q);
+    c.classList.toggle('hidden', !show);
+    if (show) shown++;
+  });
+  document.getElementById('allCount').textContent = shown + ' organizations';
+}
+
+// Event listeners
+document.getElementById('searchBox').addEventListener('input', applyFilters);
+document.getElementById('sortSelect').addEventListener('change', function() { currentSort = this.value; refreshAll(); });
+document.querySelectorAll('#typeFilters .fbtn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.parentElement.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+    this.classList.add('on');
+    activeFilters.type = this.dataset.v;
+    applyFilters();
+  });
+});
+document.querySelectorAll('#locFilters .fbtn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.parentElement.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+    this.classList.add('on');
+    activeFilters.loc = this.dataset.v;
+    applyFilters();
+  });
+});
+document.getElementById('exportBtn').addEventListener('click', function() {
+  const yesOrgs = DATA.filter(d => localStorage.getItem('bbgrant-' + d.id) === 'yes');
+  if (!yesOrgs.length) { alert('No "Yes" votes yet.'); return; }
+  const txt = yesOrgs.map(d => d.org + ' | ' + d.location + ' | ' + d.category + ' | ' + (d.website || 'no website') + ' | Grant Fit: ' + d.grantFit).join('\n');
+  const btn = this;
+  navigator.clipboard.writeText('BB Grant — Yes Votes:\n\n' + txt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy "Yes" List'; btn.classList.remove('copied'); }, 2000);
+  });
+});
+
+// ── VOTER NAME & SYNC ──
+// Replace this URL after deploying the Google Apps Script
+const SYNC_URL = '__APPS_SCRIPT_URL__';
+
+let voterName = localStorage.getItem('bbgrant-voter') || '';
+let syncTimer = null;
+let teamVotes = {};
+
+function initVoter() {
+  if (!voterName) {
+    document.getElementById('voterOverlay').style.display = 'flex';
+  } else {
+    document.getElementById('voterTag').textContent = voterName;
+    refreshAll();
+    loadTeamVotes();
+  }
+}
+
+document.getElementById('voterForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  voterName = document.getElementById('voterInput').value.trim();
+  if (!voterName) return;
+  localStorage.setItem('bbgrant-voter', voterName);
+  document.getElementById('voterOverlay').style.display = 'none';
+  document.getElementById('voterTag').textContent = voterName;
+  refreshAll();
+  loadTeamVotes();
+});
+
+document.getElementById('voterTag').addEventListener('click', function() {
+  var newName = prompt('Change your voter name:', voterName);
+  if (newName && newName.trim()) {
+    voterName = newName.trim();
+    localStorage.setItem('bbgrant-voter', voterName);
+    this.textContent = voterName;
+    syncVotes();
+  }
+});
+
+function setSyncState(state) {
+  var dot = document.getElementById('syncDot');
+  var label = document.getElementById('syncLabel');
+  dot.className = 'sync-dot' + (state === 'saving' ? ' saving' : state === 'error' ? ' error' : '');
+  label.textContent = state === 'saving' ? 'Saving...' : state === 'error' ? 'Offline (local only)' : 'Synced';
+}
+
+function syncVotes() {
+  if (!SYNC_URL || SYNC_URL === '__APPS_SCRIPT_URL__') {
+    setSyncState('error');
+    return;
+  }
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(function() {
+    setSyncState('saving');
+    var votes = [];
+    DATA.forEach(function(d) {
+      var v = localStorage.getItem('bbgrant-' + d.id);
+      if (v) votes.push({ id: d.id, org: d.org, vote: v });
+    });
+    fetch(SYNC_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ voter: voterName, votes: votes })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function() { setSyncState('ok'); })
+    .catch(function() { setSyncState('error'); });
+  }, 1500);
+}
+
+function loadTeamVotes() {
+  if (!SYNC_URL || SYNC_URL === '__APPS_SCRIPT_URL__') return;
+  fetch(SYNC_URL)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      teamVotes = {};
+      (data.votes || []).forEach(function(v) {
+        if (!teamVotes[v.orgId]) teamVotes[v.orgId] = [];
+        teamVotes[v.orgId].push({ voter: v.voter, vote: v.vote });
+      });
+      renderTeamPips();
+    })
+    .catch(function() {});
+}
+
+function renderTeamPips() {
+  document.querySelectorAll('.card').forEach(function(card) {
+    var id = card.dataset.id;
+    var existing = card.querySelector('.team-votes');
+    if (existing) existing.remove();
+    var votes = teamVotes[id];
+    if (!votes || !votes.length) return;
+    var container = document.createElement('div');
+    container.className = 'team-votes';
+    votes.forEach(function(v) {
+      if (v.voter === voterName) return;
+      var pip = document.createElement('div');
+      pip.className = 'tv-pip tv-' + v.vote;
+      pip.textContent = v.voter.charAt(0).toUpperCase();
+      pip.title = v.voter + ': ' + v.vote;
+      container.appendChild(pip);
+    });
+    if (container.children.length > 0) {
+      var actions = card.querySelector('.card-actions');
+      if (actions) card.insertBefore(container, actions);
+    }
+  });
+}
+
+// Override castVote to also sync
+var _origCastVote = castVote;
+castVote = function(id, type) {
+  _origCastVote(id, type);
+  syncVotes();
+};
+
+initVoter();
+</script>
+</body>
+</html>
